@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import { v4 } from 'uuid';
+import React, { useState } from 'react'
 import InfiniteScroll from '@alexcambose/react-infinite-scroll';
 import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType';
 import queryString from '@/app/helpers/queryString'
@@ -9,47 +8,46 @@ import C from '@/app/constants'
 const ImageCatalog = () => {
     const [stateItems, setStateItems] = useState([])
 
-    let endDate = new Date()
-    endDate.setDate(endDate.getDate() - 1)
-    let startDate = new Date()
-    startDate.setDate(startDate.getDate() - C.ITEMS_ON_PAGE)
     const [stateDate, setStateDate] = useState({
-        startDateValue: startDate,
-        endDateValue: endDate,
-        startDateString: getSpecialDateFormat(startDate),
-        endDateString: getSpecialDateFormat(endDate)
+        startDateValue: null,
+        endDateValue: null
     })
-
-    // useEffect(() => {
-    // ajaxQuery(getSpecialDateFormat(startDate), getSpecialDateFormat(endDate))
-    // }, [])
 
     const ajaxQuery = async (startDate, endDate) => {
         try {
-            console.log(stateItems)
             const nasaQuery = await fetch(queryString(null, startDate, endDate))
             const nasaParse = await nasaQuery.json()
-            // debugger
+
             setStateItems([...stateItems, ...nasaParse.reverse()])
-            console.log([...stateItems, ...nasaParse.reverse()])
+
+            return nasaParse.length
         } catch (error) {
             console.log(error)
         }
     }
 
     const checkScrollScreen = () => {
-        console.log('startDate: ', startDate, 'endDate: ', endDate)
-        startDate = new Date(stateDate.startDateValue)
-        endDate = new Date(stateDate.startDateValue)
-        endDate.setDate(endDate.getDate() - 1)
-        startDate.setDate(startDate.getDate() - C.ITEMS_ON_PAGE)
-        console.log('startDate: ', startDate, 'endDate: ', endDate)
+        let startDate, endDate
+
+        if (stateDate.startDateValue && stateDate.endDateValue) {
+            startDate = new Date(stateDate.startDateValue)
+            endDate = new Date(stateDate.startDateValue)
+
+            endDate.setDate(endDate.getDate() - 1)
+            startDate.setDate(startDate.getDate() - C.ITEMS_ON_PAGE)
+        } else {
+            startDate = new Date()
+            startDate.setDate(startDate.getDate() - C.ITEMS_ON_PAGE)
+
+            endDate = new Date()
+            endDate.setDate(endDate.getDate() - 1)
+        }
+
         ajaxQuery(getSpecialDateFormat(startDate), getSpecialDateFormat(endDate))
+
         setStateDate({
             startDateValue: startDate,
-            endDateValue: endDate,
-            startDateString: getSpecialDateFormat(startDate),
-            endDateString: getSpecialDateFormat(endDate)
+            endDateValue: endDate
         })
     };
 
@@ -67,7 +65,7 @@ const ImageCatalog = () => {
                 {stateItems.map(item => (
                     <div
                         style={{ margin: '30px' }}
-                        key={v4()}
+                        key={item.date}
                     >
                         <RenderingContentDependingOnTheType
                             style={{
