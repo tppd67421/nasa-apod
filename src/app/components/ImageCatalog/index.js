@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import InfiniteScroll from '@alexcambose/react-infinite-scroll';
 import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType';
 import queryString from '@/app/helpers/queryString'
@@ -8,27 +8,46 @@ import C from '@/app/constants'
 const ImageCatalog = () => {
     const [stateItems, setStateItems] = useState([])
 
+    const [stateItemsCounter, setItemsCounter] = useState(0)
+
     const [stateDate, setStateDate] = useState({
         startDateValue: null,
         endDateValue: null
     })
 
-    const ajaxQuery = async (startDate, endDate) => {
+    let startDate, endDate
+
+    useEffect(() => {
+        // if we have less them 24 items
+        if (stateItemsCounter < C.ITEMS_ON_PAGE && stateItemsCounter !== 0) {
+            startDate = new Date(stateDate.startDateValue)
+            endDate = new Date(stateDate.startDateValue)
+
+            endDate.setDate(endDate.getDate() - 1)
+            startDate.setDate(startDate.getDate() - (C.ITEMS_ON_PAGE - stateItemsCounter))
+
+            ajaxQuery(getSpecialDateFormat(startDate), getSpecialDateFormat(endDate), stateItemsCounter)
+
+            setStateDate({
+                startDateValue: startDate,
+                endDateValue: endDate
+            })
+        }
+    }, [stateItemsCounter])
+
+    const ajaxQuery = async (startDate, endDate, itemsCounter = 0) => {
         try {
             const nasaQuery = await fetch(queryString(null, startDate, endDate))
             const nasaParse = await nasaQuery.json()
 
             setStateItems([...stateItems, ...nasaParse.reverse()])
-
-            return nasaParse.length
+            setItemsCounter(nasaParse.length + itemsCounter)
         } catch (error) {
             console.log(error)
         }
     }
 
     const checkScrollScreen = () => {
-        let startDate, endDate
-
         if (stateDate.startDateValue && stateDate.endDateValue) {
             startDate = new Date(stateDate.startDateValue)
             endDate = new Date(stateDate.startDateValue)

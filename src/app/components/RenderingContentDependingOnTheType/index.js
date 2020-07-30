@@ -13,14 +13,14 @@ const RenderingContentDependingOnTheType = ({ url, date, mediaType, style }) => 
             return <VideoBlock style={style} url={url} date={date} />
 
         default:
-            return <strong>Unidentified media type: {mediaType}</strong>
+            return <strong>We have nothing on this date</strong>
     }
 }
 
 RenderingContentDependingOnTheType.propTypes = {
-    url: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    mediaType: PropTypes.string.isRequired,
+    url: PropTypes.string,
+    date: PropTypes.string,
+    mediaType: PropTypes.string,
     style: PropTypes.object
 }
 
