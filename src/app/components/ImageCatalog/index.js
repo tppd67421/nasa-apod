@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { v4 } from 'uuid';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import InfiniteScroll from '@alexcambose/react-infinite-scroll';
 import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType';
 import queryString from '@/app/helpers/queryString'
 import getSpecialDateFormat from '@/app/helpers/getSpecialDateFormat'
@@ -21,7 +21,7 @@ const ImageCatalog = () => {
     })
 
     // useEffect(() => {
-        // ajaxQuery(getSpecialDateFormat(startDate), getSpecialDateFormat(endDate))
+    // ajaxQuery(getSpecialDateFormat(startDate), getSpecialDateFormat(endDate))
     // }, [])
 
     const ajaxQuery = async (startDate, endDate) => {
@@ -51,16 +51,13 @@ const ImageCatalog = () => {
             startDateString: getSpecialDateFormat(startDate),
             endDateString: getSpecialDateFormat(endDate)
         })
-
     };
 
     return (
         <div>
             <InfiniteScroll
-                dataLength={stateItems.length}
-                next={checkScrollScreen}
                 hasMore={true}
-                loader={<h4>Loading...</h4>}
+                loadMore={checkScrollScreen}
                 style={{
                     display: 'flex',
                     flexWrap: 'wrap',

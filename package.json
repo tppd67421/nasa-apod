@@ -49,9 +49,9 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "@alexcambose/react-infinite-scroll": "^1.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-infinite-scroll-component": "^5.0.5",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
