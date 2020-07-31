@@ -13,23 +13,19 @@ const MainImage = () => {
         url: null,
         mediaType: C.MEDIA_TYPE_IMAGE
     })
+
     const input = useRef();
 
     useEffect(() => {
-        if (dataFromLocalStorage) {
-            setState(dataFromLocalStorage)
-        } else {
-            ajaxQuery()
-        }
+        if (!dataFromLocalStorage) ajaxQuery()
+
         input.current.addEventListener('change', setNewDate)
 
         return () => input.current.removeEventListener('change', setNewDate)
     }, [])
 
     useEffect(() => {
-        writeToLocalStorage(C.LOCAL_STORAGE_KEY, JSON.stringify({
-            ...state
-        }))
+        writeToLocalStorage(C.LOCAL_STORAGE_KEY, JSON.stringify({ ...state }))
     }, [state])
 
     const ajaxQuery = async (selectedDate = '') => {
@@ -47,7 +43,13 @@ const MainImage = () => {
             setState(targetObj)
         } catch (error) {
             console.log(error)
-            setState({...state, url: null, date: selectedDate, mediaType: null})
+            setState((prevState) =>
+                ({
+                    ...prevState,
+                    url: null,
+                    date: selectedDate,
+                    mediaType: null
+                }))
         }
     }
 
@@ -71,7 +73,9 @@ const MainImage = () => {
                 max={getSpecialDateFormat()}
                 value={state.date}
                 ref={input}
-                onChange={(e) => setState({ ...state, date: e.target.value })}
+                onChange={() => setState((prevState) =>
+                    ({ ...prevState, date: input.current.value })
+                )}
             />
 
             <hr />

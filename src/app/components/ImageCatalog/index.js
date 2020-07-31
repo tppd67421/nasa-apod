@@ -40,7 +40,9 @@ const ImageCatalog = () => {
             const nasaQuery = await fetch(queryString(null, startDate, endDate))
             const nasaParse = await nasaQuery.json()
 
-            setStateItems([...stateItems, ...nasaParse.reverse()])
+            setStateItems((prevState) =>
+                ([...prevState, ...nasaParse.reverse()])
+            )
             setItemsCounter(nasaParse.length + itemsCounter)
         } catch (error) {
             console.log(error)
