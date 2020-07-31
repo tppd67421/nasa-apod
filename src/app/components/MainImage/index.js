@@ -26,6 +26,12 @@ const MainImage = () => {
         return () => input.current.removeEventListener('change', setNewDate)
     }, [])
 
+    useEffect(() => {
+        writeToLocalStorage(C.LOCAL_STORAGE_KEY, JSON.stringify({
+            ...state
+        }))
+    }, [state])
+
     const ajaxQuery = async (selectedDate = '') => {
         try {
             const nasaQuery = await fetch(queryString(selectedDate))
@@ -41,11 +47,7 @@ const MainImage = () => {
             setState(targetObj)
         } catch (error) {
             console.log(error)
-            setState({...state, date: selectedDate, mediaType: null})
-        } finally {
-            writeToLocalStorage(C.LOCAL_STORAGE_KEY, JSON.stringify({
-                ...state, url: null, date: selectedDate, mediaType: null
-            }))
+            setState({...state, url: null, date: selectedDate, mediaType: null})
         }
     }
 
