@@ -29,6 +29,8 @@ const MainImage = () => {
     const ajaxQuery = async (selectedDate = '') => {
         try {
             const nasaQuery = await fetch(queryString(selectedDate))
+            if (!nasaQuery.ok) throw new Error('Some internal error')
+
             const nasaParse = await nasaQuery.json()
 
             const date = nasaParse.date
@@ -37,10 +39,13 @@ const MainImage = () => {
             const targetObj = { date, url, mediaType }
 
             setState(targetObj)
-
-            writeToLocalStorage(C.LOCAL_STORAGE_KEY, JSON.stringify(targetObj))
         } catch (error) {
             console.log(error)
+            setState({...state, date: selectedDate, mediaType: null})
+        } finally {
+            writeToLocalStorage(C.LOCAL_STORAGE_KEY, JSON.stringify({
+                ...state, url: null, date: selectedDate, mediaType: null
+            }))
         }
     }
 
