@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import InfiniteScroll from '@alexcambose/react-infinite-scroll';
 import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType';
+import { LoaderActive, LoaderEmpty } from './../loaders'
 import queryString from '@/app/helpers/queryString'
 import getSpecialDateFormat from '@/app/helpers/getSpecialDateFormat'
 import C from '@/app/constants'
 
 const ImageCatalog = () => {
     const [stateItems, setStateItems] = useState([])
-
     const [stateItemsCounter, setItemsCounter] = useState(0)
-
+    const [stateLoader, setStateLoader] = useState(true)
     const [stateDate, setStateDate] = useState({
         startDateValue: null,
         endDateValue: null
@@ -35,6 +35,10 @@ const ImageCatalog = () => {
         }
     }, [stateItemsCounter])
 
+    useEffect(() => {
+        setStateLoader(false)
+    }, [stateItems])
+
     const ajaxQuery = async (startDate, endDate, itemsCounter = 0) => {
         try {
             const nasaQuery = await fetch(queryString(null, startDate, endDate))
@@ -50,6 +54,8 @@ const ImageCatalog = () => {
     }
 
     const checkScrollScreen = () => {
+        setStateLoader(true)
+
         if (stateDate.startDateValue && stateDate.endDateValue) {
             startDate = new Date(stateDate.startDateValue)
             endDate = new Date(stateDate.startDateValue)
@@ -100,6 +106,7 @@ const ImageCatalog = () => {
                         />
                     </div>
                 ))}
+                {stateLoader ? <LoaderActive /> : <LoaderEmpty />}
             </InfiniteScroll>
         </div>
     )
