@@ -1,4 +1,7 @@
 const constants = {
+    CHANGE_MAIN_IMAGE: 'CHANGE_MAIN_IMAGE',
+    LOAD_IMAGE_TO_IMAGE_CATALOG: 'LOAD_IMAGE_TO_IMAGE_CATALOG',
+
     NASA_QUERY: 'https://api.nasa.gov/planetary/apod',
     NASA_API_KEY: 'gKbcjyL1faO8B1GgXaE8hFzUqelAUaBhk1ZjIxLQ',
     NASA_API_KEY_STRING: 'api_key',

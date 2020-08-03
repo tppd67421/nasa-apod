@@ -1,23 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType';
 import getSpecialDateFormat from '@/app/helpers/getSpecialDateFormat'
 import { writeToLocalStorage, readFromLocalStorage } from '@/app/helpers/workWithLocalStorage'
 import queryString from '@/app/helpers/queryString'
 import C from '@/app/constants'
 
-const MainImage = () => {
+const MainImage = ({ mainImage, changeImage }) => {
     const dataFromLocalStorage = JSON.parse(readFromLocalStorage(C.LOCAL_STORAGE_KEY))
-
-    const [state, setState] = useState(dataFromLocalStorage || {
-        date: getSpecialDateFormat(),
-        url: null,
-        mediaType: C.MEDIA_TYPE_IMAGE
-    })
 
     const input = useRef();
 
     useEffect(() => {
-        if (!dataFromLocalStorage) ajaxQuery()
+        if (!dataFromLocalStorage || !dataFromLocalStorage.date || !Object.keys(dataFromLocalStorage).length) {
+            ajaxQuery()
+        } else {
+            changeImage(dataFromLocalStorage)
+        }
 
         input.current.addEventListener('change', setNewDate)
 
@@ -25,8 +23,8 @@ const MainImage = () => {
     }, [])
 
     useEffect(() => {
-        writeToLocalStorage(C.LOCAL_STORAGE_KEY, JSON.stringify({ ...state }))
-    }, [state])
+        writeToLocalStorage(C.LOCAL_STORAGE_KEY, JSON.stringify({ ...mainImage }))
+    }, [mainImage])
 
     const ajaxQuery = async (selectedDate = '') => {
         try {
@@ -40,16 +38,10 @@ const MainImage = () => {
             const mediaType = nasaParse.media_type
             const targetObj = { date, url, mediaType }
 
-            setState(targetObj)
+            changeImage(targetObj)
         } catch (error) {
-            console.log(error)
-            setState((prevState) =>
-                ({
-                    ...prevState,
-                    url: null,
-                    date: selectedDate,
-                    mediaType: null
-                }))
+            console.log('Error: ', error)
+            changeImage({date: selectedDate, url: null, mediaType: null})
         }
     }
 
@@ -61,9 +53,9 @@ const MainImage = () => {
     return (
         <>
             <RenderingContentDependingOnTheType
-                url={state.url}
-                date={state.date}
-                mediaType={state.mediaType}
+                url={mainImage.url}
+                date={mainImage.date}
+                mediaType={mainImage.mediaType}
             />
 
             <hr />
@@ -71,11 +63,9 @@ const MainImage = () => {
             <input
                 type="date"
                 max={getSpecialDateFormat()}
-                value={state.date}
+                value={mainImage.date || ''}
                 ref={input}
-                onChange={() => setState((prevState) =>
-                    ({ ...prevState, date: input.current.value })
-                )}
+                onChange={() => changeImage({ ...mainImage, date: input.current.value })}
             />
 
             <hr />
