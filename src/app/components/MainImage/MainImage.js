@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType';
+import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType/RenderingContentDependingOnTheType';
 import getSpecialDateFormat from '@/app/helpers/getSpecialDateFormat'
 import { writeToLocalStorage, readFromLocalStorage } from '@/app/helpers/workWithLocalStorage'
 import queryString from '@/app/helpers/queryString'

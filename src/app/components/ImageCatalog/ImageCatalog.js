@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import InfiniteScroll from '@alexcambose/react-infinite-scroll';
-import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType';
-import { LoaderActive, LoaderEmpty } from './../loaders'
+import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType/RenderingContentDependingOnTheType';
+import { LoaderActive, LoaderEmpty } from './../loaders/loaders'
 import queryString from '@/app/helpers/queryString'
 import getSpecialDateFormat from '@/app/helpers/getSpecialDateFormat'
 import C from '@/app/constants/constants'

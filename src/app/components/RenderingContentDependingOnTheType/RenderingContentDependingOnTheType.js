@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ImageBlock from './../ImageBlock'
-import VideoBlock from './../VideoBlock'
+import ImageBlock from '../ImageBlock/ImageBlock'
+import VideoBlock from './../VideoBlock/VideoBlock'
 import C from '@/app/constants/constants'
 
 const RenderingContentDependingOnTheType = ({ url, date, mediaType, style }) => {
