@@ -1,10 +1,16 @@
 {
     "mainImage": {
-        "date": null,
-        "url": null,
-        "mediaType": null
+        "date": "",
+        "url": "",
+        "mediaType": "image"
     },
     "imageCatalog": {
-        
+        "items": [],
+        "date": {
+            "startDateValue": null,
+            "endDateValue": null
+        },
+        "itemsCounterForOneIteration": 0,
+        "loader": true
     }
 }

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import C from '@/app/constants'
+import C from '@/app/constants/constants'
 
 const mainImage = (state = {}, action) => {
     switch (action.type) {
@@ -10,7 +10,7 @@ const mainImage = (state = {}, action) => {
                 url: action.url,
                 mediaType: action.mediaType
             }
-    
+
         default:
             return state
     }
@@ -18,9 +18,33 @@ const mainImage = (state = {}, action) => {
 
 const imageCatalog = (state = {}, action) => {
     switch (action.type) {
-        case C.LOAD_IMAGE_TO_IMAGE_CATALOG:
-            return state
-    
+        case C.LOAD_IMAGES_TO_IMAGE_CATALOG:
+            return {
+                ...state,
+                items: action.items
+            }
+            
+        case C.CHANGE_DATA_INTERVAL_IN_IMAGE_CATALOG:
+            return {
+                ...state,
+                date: {
+                    startDateValue: action.startDateValue,
+                    endDateValue: action.endDateValue
+                }
+            }
+
+        case C.ITEMS_COUNTER_FOR_ONE_ITERATION:
+            return {
+                ...state,
+                itemsCounterForOneIteration: action.counter
+            }
+
+        case C.LOADER_IN_IMAGE_CATALOG:
+            return {
+                ...state,
+                loader: action.loader
+            }
+
         default:
             return state
     }

@@ -3,7 +3,7 @@ import RenderingContentDependingOnTheType from './../RenderingContentDependingOn
 import getSpecialDateFormat from '@/app/helpers/getSpecialDateFormat'
 import { writeToLocalStorage, readFromLocalStorage } from '@/app/helpers/workWithLocalStorage'
 import queryString from '@/app/helpers/queryString'
-import C from '@/app/constants'
+import C from '@/app/constants/constants'
 
 const MainImage = ({ mainImage, changeImage }) => {
     const dataFromLocalStorage = JSON.parse(readFromLocalStorage(C.LOCAL_STORAGE_KEY))
@@ -11,10 +11,11 @@ const MainImage = ({ mainImage, changeImage }) => {
     const input = useRef();
 
     useEffect(() => {
-        if (!dataFromLocalStorage || !dataFromLocalStorage.date || !Object.keys(dataFromLocalStorage).length) {
-            ajaxQuery()
-        } else {
+        // debugger
+        if (dataFromLocalStorage || dataFromLocalStorage.date || Object.keys(dataFromLocalStorage).length) {
             changeImage(dataFromLocalStorage)
+        } else {
+            ajaxQuery()
         }
 
         input.current.addEventListener('change', setNewDate)

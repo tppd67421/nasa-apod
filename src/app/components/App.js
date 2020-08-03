@@ -1,12 +1,12 @@
 import React from 'react'
 import MainImageContainer from './MainImage/MainImageContainer'
-import ImageCatalog from './ImageCatalog'
+import ImageCatalogContainer from './ImageCatalog/ImageCatalogContainer'
 
 const App = () => {    
     return (
         <>
             <MainImageContainer />
-            <ImageCatalog />
+            <ImageCatalogContainer />
         </>
     )
 }

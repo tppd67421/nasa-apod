@@ -1,64 +1,60 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import InfiniteScroll from '@alexcambose/react-infinite-scroll';
 import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType';
 import { LoaderActive, LoaderEmpty } from './../loaders'
 import queryString from '@/app/helpers/queryString'
 import getSpecialDateFormat from '@/app/helpers/getSpecialDateFormat'
-import C from '@/app/constants'
+import C from '@/app/constants/constants'
 
-const ImageCatalog = () => {
-    const [stateItems, setStateItems] = useState([])
-    const [stateItemsCounter, setItemsCounter] = useState(0)
-    const [stateLoader, setStateLoader] = useState(true)
-    const [stateDate, setStateDate] = useState({
-        startDateValue: null,
-        endDateValue: null
-    })
-
+const ImageCatalog = ({
+    imagesArray,
+    loadImages,
+    dataInterval,
+    changeDataInterval,
+    itemsCounterForOneIteration,
+    countItemsForOneIteration,
+    loader,
+    changeLoader,
+}) => {
     let startDate, endDate
 
     useEffect(() => {
         // if we have less them 24 items
-        if (stateItemsCounter < C.ITEMS_ON_PAGE && stateItemsCounter !== 0) {
-            startDate = new Date(stateDate.startDateValue)
-            endDate = new Date(stateDate.startDateValue)
+        if (itemsCounterForOneIteration < C.ITEMS_ON_PAGE && itemsCounterForOneIteration !== 0) {
+            startDate = new Date(dataInterval.startDateValue)
+            endDate = new Date(dataInterval.startDateValue)
 
             endDate.setDate(endDate.getDate() - 1)
-            startDate.setDate(startDate.getDate() - (C.ITEMS_ON_PAGE - stateItemsCounter))
+            startDate.setDate(startDate.getDate() - (C.ITEMS_ON_PAGE - itemsCounterForOneIteration))
 
-            ajaxQuery(getSpecialDateFormat(startDate), getSpecialDateFormat(endDate), stateItemsCounter)
+            ajaxQuery(getSpecialDateFormat(startDate), getSpecialDateFormat(endDate), itemsCounterForOneIteration)
 
-            setStateDate({
-                startDateValue: startDate,
-                endDateValue: endDate
-            })
+            changeDataInterval(startDate, endDate)
         }
-    }, [stateItemsCounter])
+    }, [itemsCounterForOneIteration])
 
     useEffect(() => {
-        setStateLoader(false)
-    }, [stateItems])
+        changeLoader(false)
+    }, [imagesArray])
 
     const ajaxQuery = async (startDate, endDate, itemsCounter = 0) => {
         try {
             const nasaQuery = await fetch(queryString(null, startDate, endDate))
             const nasaParse = await nasaQuery.json()
 
-            setStateItems((prevState) =>
-                ([...prevState, ...nasaParse.reverse()])
-            )
-            setItemsCounter(nasaParse.length + itemsCounter)
+            loadImages([...imagesArray, ...nasaParse.reverse()])
+            countItemsForOneIteration(nasaParse.length + itemsCounter)
         } catch (error) {
             console.log(error)
         }
     }
 
     const checkScrollScreen = () => {
-        setStateLoader(true)
+        changeLoader(true)
 
-        if (stateDate.startDateValue && stateDate.endDateValue) {
-            startDate = new Date(stateDate.startDateValue)
-            endDate = new Date(stateDate.startDateValue)
+        if (dataInterval.startDateValue && dataInterval.endDateValue) {
+            startDate = new Date(dataInterval.startDateValue)
+            endDate = new Date(dataInterval.startDateValue)
 
             endDate.setDate(endDate.getDate() - 1)
             startDate.setDate(startDate.getDate() - C.ITEMS_ON_PAGE)
@@ -72,10 +68,7 @@ const ImageCatalog = () => {
 
         ajaxQuery(getSpecialDateFormat(startDate), getSpecialDateFormat(endDate))
 
-        setStateDate({
-            startDateValue: startDate,
-            endDateValue: endDate
-        })
+        changeDataInterval(startDate, endDate)
     };
 
     return (
@@ -89,7 +82,7 @@ const ImageCatalog = () => {
                     justifyContent: 'center'
                 }}
             >
-                {stateItems.map(item => (
+                {imagesArray.map(item => (
                     <div
                         style={{ margin: '30px' }}
                         key={item.date}
@@ -106,7 +99,7 @@ const ImageCatalog = () => {
                         />
                     </div>
                 ))}
-                {stateLoader ? <LoaderActive /> : <LoaderEmpty />}
+                {loader ? <LoaderActive /> : <LoaderEmpty />}
             </InfiniteScroll>
         </div>
     )
