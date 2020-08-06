@@ -18,7 +18,8 @@ const mapStateToProps = (state) => ({
     imagesArrayForOneIteration: state.imageCatalog.itemsForOneIteration,
     dataInterval: state.imageCatalog.date,
     itemsCounterForOneIteration: state.imageCatalog.itemsCounterForOneIteration,
-    loader: state.imageCatalog.loader
+    loader: state.imageCatalog.loader,
+    todayDate: state.mainImage.todayData.date
 })
 
 const mapDispatchToProps = (dispatch) => ({

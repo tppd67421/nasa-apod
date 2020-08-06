@@ -3,7 +3,7 @@ import InfiniteScroll from '@alexcambose/react-infinite-scroll';
 import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType/RenderingContentDependingOnTheType';
 import { LoaderActive, LoaderEmpty } from './../loaders/loaders'
 import queryString from '@/app/helpers/queryString'
-import getSpecialDateFormat from '@/app/helpers/getSpecialDateFormat'
+import convertDateObjectToString from '@/app/helpers/convertDateObjectToString'
 import C from '@/app/constants/constants'
 
 const ImageCatalog = ({
@@ -17,6 +17,7 @@ const ImageCatalog = ({
     countItemsForOneIteration,
     loader,
     changeLoader,
+    todayDate
 }) => {
     let startDate, endDate
 
@@ -29,7 +30,7 @@ const ImageCatalog = ({
             endDate.setDate(endDate.getDate() - 1)
             startDate.setDate(startDate.getDate() - (C.ITEMS_ON_PAGE - itemsCounterForOneIteration))
 
-            ajaxQuery(getSpecialDateFormat(startDate), getSpecialDateFormat(endDate), itemsCounterForOneIteration)
+            ajaxQuery(convertDateObjectToString(startDate), convertDateObjectToString(endDate), itemsCounterForOneIteration)
 
             changeDataInterval(startDate, endDate)
         }
@@ -41,9 +42,23 @@ const ImageCatalog = ({
     }, [imagesArray])
 
     useEffect(() => {
+        // fix bug. sometimes load second iteration instead of first
         loadImages([...imagesArray, ...imagesArrayForOneIteration])
     }, [imagesArrayForOneIteration])
-    
+
+    useEffect(() => {
+        if (!todayDate) return
+
+        // first load images
+        startDate = new Date()
+        startDate.setDate(startDate.getDate() - C.ITEMS_ON_PAGE)
+        endDate = new Date(todayDate)
+        endDate.setDate(endDate.getDate() - 1)
+
+        ajaxQuery(convertDateObjectToString(startDate), convertDateObjectToString(endDate))
+        changeDataInterval(startDate, endDate)
+    }, [todayDate])
+
     const ajaxQuery = async (startDate, endDate, itemsCounter = 0) => {
         try {
             const nasaQuery = await fetch(queryString(null, startDate, endDate))
@@ -60,21 +75,15 @@ const ImageCatalog = ({
         changeLoader(true)
 
         if (dataInterval.startDateValue && dataInterval.endDateValue) {
+            // next load images
             startDate = new Date(dataInterval.startDateValue)
             endDate = new Date(dataInterval.startDateValue)
-
             endDate.setDate(endDate.getDate() - 1)
             startDate.setDate(startDate.getDate() - C.ITEMS_ON_PAGE)
-        } else {
-            startDate = new Date()
-            startDate.setDate(startDate.getDate() - C.ITEMS_ON_PAGE)
 
-            endDate = new Date()
-            endDate.setDate(endDate.getDate() - 1)
+            ajaxQuery(convertDateObjectToString(startDate), convertDateObjectToString(endDate))
+            changeDataInterval(startDate, endDate)
         }
-
-        ajaxQuery(getSpecialDateFormat(startDate), getSpecialDateFormat(endDate))
-        changeDataInterval(startDate, endDate)
     };
 
     return (

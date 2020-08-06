@@ -1,4 +1,4 @@
-const getSpecialDateFormat = (date = new Date()) => {
+const convertDateObjectToString = (date = new Date()) => {
     const monthIncrement = date.getMonth() + 1
     const month = monthIncrement < 10 ? `0${monthIncrement}` : monthIncrement
     const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
@@ -6,4 +6,4 @@ const getSpecialDateFormat = (date = new Date()) => {
     return `${date.getFullYear()}-${month}-${day}`
 }
 
-export default getSpecialDateFormat
+export default convertDateObjectToString
