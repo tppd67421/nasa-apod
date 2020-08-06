@@ -1,14 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { loadImagesToImageCatalog, changeDataIntervalInImageCatalog, countItemsForOneIteration, loaderInImageCatalog } from '@/app/store/actions'
+import {
+    loadImagesToImageCatalog,
+    loadImagesForOneIterationToImageCatalog,
+    changeDataIntervalInImageCatalog,
+    countItemsForOneIteration,
+    loaderInImageCatalog
+} from '@/app/store/actions'
 import ImageCatalog from './ImageCatalog'
 
 const ImageCatalogContainer = (props) => {
     return <ImageCatalog {...props} />
 }
 
-const mapStateToProps = (state) =>({
+const mapStateToProps = (state) => ({
     imagesArray: state.imageCatalog.items,
+    imagesArrayForOneIteration: state.imageCatalog.itemsForOneIteration,
     dataInterval: state.imageCatalog.date,
     itemsCounterForOneIteration: state.imageCatalog.itemsCounterForOneIteration,
     loader: state.imageCatalog.loader
@@ -17,6 +24,9 @@ const mapStateToProps = (state) =>({
 const mapDispatchToProps = (dispatch) => ({
     loadImages(items) {
         dispatch(loadImagesToImageCatalog(items))
+    },
+    loadImagesToOneIteration(items) {
+        dispatch(loadImagesForOneIterationToImageCatalog(items))
     },
     changeDataInterval(startDate, endDate) {
         dispatch(changeDataIntervalInImageCatalog(startDate, endDate))

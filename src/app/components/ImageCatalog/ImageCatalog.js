@@ -9,6 +9,8 @@ import C from '@/app/constants/constants'
 const ImageCatalog = ({
     imagesArray,
     loadImages,
+    imagesArrayForOneIteration,
+    loadImagesToOneIteration,
     dataInterval,
     changeDataInterval,
     itemsCounterForOneIteration,
@@ -34,15 +36,20 @@ const ImageCatalog = ({
     }, [itemsCounterForOneIteration])
 
     useEffect(() => {
+        if (!imagesArray.length) return
         changeLoader(false)
     }, [imagesArray])
 
+    useEffect(() => {
+        loadImages([...imagesArray, ...imagesArrayForOneIteration])
+    }, [imagesArrayForOneIteration])
+    
     const ajaxQuery = async (startDate, endDate, itemsCounter = 0) => {
         try {
             const nasaQuery = await fetch(queryString(null, startDate, endDate))
             const nasaParse = await nasaQuery.json()
 
-            loadImages([...imagesArray, ...nasaParse.reverse()])
+            loadImagesToOneIteration([...nasaParse.reverse()])
             countItemsForOneIteration(nasaParse.length + itemsCounter)
         } catch (error) {
             console.log(error)
@@ -67,7 +74,6 @@ const ImageCatalog = ({
         }
 
         ajaxQuery(getSpecialDateFormat(startDate), getSpecialDateFormat(endDate))
-
         changeDataInterval(startDate, endDate)
     };
 

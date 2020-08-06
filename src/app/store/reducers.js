@@ -36,6 +36,12 @@ const imageCatalog = (state = {}, action) => {
                 items: action.items
             }
 
+        case C.LOAD_IMAGES_FOR_ONE_ITERATION_TO_IMAGE_CATALOG:
+            return {
+                ...state,
+                itemsForOneIteration: action.items
+            }
+
         case C.CHANGE_DATA_INTERVAL_IN_IMAGE_CATALOG:
             return {
                 ...state,

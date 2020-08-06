@@ -19,6 +19,11 @@ export const loadImagesToImageCatalog = (items) => ({
     items
 })
 
+export const loadImagesForOneIterationToImageCatalog = (items) => ({
+    type: C.LOAD_IMAGES_FOR_ONE_ITERATION_TO_IMAGE_CATALOG,
+    items
+})
+
 export const changeDataIntervalInImageCatalog = (startDateValue, endDateValue) => ({
     type: C.CHANGE_DATA_INTERVAL_IN_IMAGE_CATALOG,
     startDateValue,

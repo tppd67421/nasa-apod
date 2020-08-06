@@ -13,6 +13,7 @@
     },
     "imageCatalog": {
         "items": [],
+        "itemsForOneIteration": [],
         "date": {
             "startDateValue": null,
             "endDateValue": null
