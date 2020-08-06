@@ -3,12 +3,24 @@ import C from '@/app/constants/constants'
 
 const mainImage = (state = {}, action) => {
     switch (action.type) {
+        case C.SET_TODAY_DATA:
+            return {
+                ...state,
+                todayData: {
+                    date: action.date,
+                    url: action.url,
+                    mediaType: action.mediaType
+                }
+            }
+
         case C.CHANGE_MAIN_IMAGE:
             return {
                 ...state,
-                date: action.date,
-                url: action.url,
-                mediaType: action.mediaType
+                imageData: {
+                    date: action.date,
+                    url: action.url,
+                    mediaType: action.mediaType
+                }
             }
 
         default:
@@ -23,7 +35,7 @@ const imageCatalog = (state = {}, action) => {
                 ...state,
                 items: action.items
             }
-            
+
         case C.CHANGE_DATA_INTERVAL_IN_IMAGE_CATALOG:
             return {
                 ...state,

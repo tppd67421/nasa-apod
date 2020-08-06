@@ -1,5 +1,12 @@
 import C from '@/app/constants/constants'
 
+export const setTodayData = (data) => ({
+    type: C.SET_TODAY_DATA,
+    date: data.date,
+    url: data.url,
+    mediaType: data.mediaType
+})
+
 export const setMainImage = (data) => ({
     type: C.CHANGE_MAIN_IMAGE,
     date: data.date,

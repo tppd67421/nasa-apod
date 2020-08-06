@@ -1,8 +1,15 @@
 {
     "mainImage": {
-        "date": "",
-        "url": "",
-        "mediaType": "image"
+        "imageData": {
+            "date": "",
+            "url": "",
+            "mediaType": ""
+        },
+        "todayData": {
+            "date": "",
+            "url": "",
+            "mediaType": ""
+        }
     },
     "imageCatalog": {
         "items": [],
