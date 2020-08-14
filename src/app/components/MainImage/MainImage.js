@@ -3,6 +3,8 @@ import RenderingContentDependingOnTheType from './../RenderingContentDependingOn
 import { writeToLocalStorage, readFromLocalStorage } from '@/app/helpers/workWithLocalStorage'
 import queryString from '@/app/helpers/queryString'
 import C from '@/app/constants/constants'
+import { MainImageDataContext } from '@/app/helpers/context'
+import './MainImage.scss'
 
 const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData }) => {
     const dataFromLocalStorage = JSON.parse(readFromLocalStorage(C.LOCAL_STORAGE_KEY))
@@ -34,7 +36,7 @@ const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData 
                 changeImage(todayData)
             }
         }
-        
+
         if (imageData.date === todayData.date) changeImage({ ...imageData, date: C.TODAY })
         writeToLocalStorage(C.LOCAL_STORAGE_KEY, JSON.stringify({ ...mainImage }))
     }, [mainImage])
@@ -47,10 +49,10 @@ const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData 
             const nasaParse = await nasaQuery.json()
 
             const date = nasaParse.date
-            const url = nasaParse.url
             const mediaType = nasaParse.media_type
+            const url = mediaType === C.MEDIA_TYPE_IMAGE ? nasaParse.hdurl : nasaParse.url
             const targetObj = { date, url, mediaType }
-            
+
             if (selectedDate) {
                 changeImage(targetObj)
             } else {
@@ -79,26 +81,30 @@ const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData 
         else return false
     }
 
-    return (
-        <>
-            <RenderingContentDependingOnTheType
-                url={checkTodayDate() ? todayData.url : imageData.url}
-                date={checkTodayDate() ? todayData.date : imageData.date}
-                mediaType={checkTodayDate() ? todayData.mediaType : imageData.mediaType}
-            />
+    const contextObj = {
+        className: 'main-image__wrapper',
+        url: checkTodayDate() ? todayData.url : imageData.url
+    }
 
-            <hr />
+    return (
+        <section className='main-image'>
+            <MainImageDataContext.Provider value={contextObj}>
+                <RenderingContentDependingOnTheType
+                    mediaType={checkTodayDate() ? todayData.mediaType : imageData.mediaType}
+                />
+            </MainImageDataContext.Provider>
+
+            <h1 className='main-image__title'>NASA. APOD: Astronomy Picture of the Day</h1>
 
             <input
+                className='main-image__input'
                 type="date"
                 max={todayData.date}
                 value={checkTodayDate() ? todayData.date : (imageData.date || '')}
                 ref={input}
                 onChange={() => changeImage({ ...imageData, date: input.current.value })}
             />
-
-            <hr />
-        </>
+        </section>
     )
 }
 

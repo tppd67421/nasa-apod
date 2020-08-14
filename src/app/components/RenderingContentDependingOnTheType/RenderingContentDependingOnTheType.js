@@ -4,13 +4,13 @@ import ImageBlock from '../ImageBlock/ImageBlock'
 import VideoBlock from './../VideoBlock/VideoBlock'
 import C from '@/app/constants/constants'
 
-const RenderingContentDependingOnTheType = ({ url, date, mediaType, style }) => {
+const RenderingContentDependingOnTheType = ({ mediaType }) => {
     switch (mediaType) {
         case C.MEDIA_TYPE_IMAGE:
-            return <ImageBlock style={style} url={url} date={date} />
+            return <ImageBlock />
 
         case C.MEDIA_TYPE_VIDEO:
-            return <VideoBlock style={style} url={url} date={date} />
+            return <VideoBlock />
 
         default:
             return <strong>We have nothing on this date</strong>
@@ -18,10 +18,7 @@ const RenderingContentDependingOnTheType = ({ url, date, mediaType, style }) => 
 }
 
 RenderingContentDependingOnTheType.propTypes = {
-    url: PropTypes.string,
-    date: PropTypes.string,
-    mediaType: PropTypes.string,
-    style: PropTypes.object
+    mediaType: PropTypes.string
 }
 
 export default RenderingContentDependingOnTheType

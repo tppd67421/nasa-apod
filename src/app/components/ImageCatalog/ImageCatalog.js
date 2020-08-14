@@ -4,7 +4,9 @@ import RenderingContentDependingOnTheType from './../RenderingContentDependingOn
 import { LoaderActive, LoaderEmpty } from './../loaders/loaders'
 import queryString from '@/app/helpers/queryString'
 import convertDateObjectToString from '@/app/helpers/convertDateObjectToString'
+import { MainImageDataContext } from '@/app/helpers/context'
 import C from '@/app/constants/constants'
+import './ImageCatalog.scss'
 
 const ImageCatalog = ({
     imagesArray,
@@ -87,36 +89,27 @@ const ImageCatalog = ({
     };
 
     return (
-        <div>
+        <section className='image-catalog'>
             <InfiniteScroll
                 hasMore={true}
                 loadMore={checkScrollScreen}
-                style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    justifyContent: 'center'
-                }}
             >
-                {imagesArray.map(item => (
-                    <div
-                        style={{ margin: '30px' }}
-                        key={item.date}
-                    >
-                        <RenderingContentDependingOnTheType
-                            style={{
-                                width: '300px',
-                                height: '300px',
-                                objectFit: 'contain'
-                            }}
-                            url={item.url}
-                            date={item.date}
-                            mediaType={item.media_type}
-                        />
-                    </div>
-                ))}
+                <div className='image-catalog__wrap'>
+                    {imagesArray.map(item => (
+                        <MainImageDataContext.Provider key={item.date} value={{
+                            className: 'image-catalog__item',
+                            url: item.url,
+                            // date: item.date
+                        }}>
+                            <RenderingContentDependingOnTheType
+                                mediaType={item.media_type}
+                            />
+                        </MainImageDataContext.Provider>
+                    ))}
+                </div>
                 {loader ? <LoaderActive /> : <LoaderEmpty />}
             </InfiniteScroll>
-        </div>
+        </section>
     )
 }
 

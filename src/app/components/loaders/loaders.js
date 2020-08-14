@@ -4,8 +4,8 @@ import './loaders.scss'
 export const LoaderActive = () => {
     return (
         <div className='loader-active'>
-            <h4>Loader...</h4>
-            <div className='lds-dual-ring' />
+            <div className='loader-active__ellips' />
+            <p>Loading...</p>
         </div>
     )
 }

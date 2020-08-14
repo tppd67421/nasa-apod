@@ -1,20 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
 import RenderDate from './../RenderDate/RenderDate'
+import { MainImageDataContext } from '@/app/helpers/context'
 
-const ImageBlock = ({ url, date, style }) => {
+const ImageBlock = () => {
+    const data = useContext(MainImageDataContext);
+    
     return (
-        <>
-            <img src={url} style={style} />
-            <RenderDate date={date} />
-        </>
+        <div className={data.className}>
+            <img src={data.url} className='image' />
+            {data.date && <RenderDate date={data.date} />}
+        </div>
     )
-}
-
-ImageBlock.propTypes = {
-    url: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    style: PropTypes.object
 }
 
 export default ImageBlock

@@ -1,20 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
 import RenderDate from './../RenderDate/RenderDate'
+import { MainImageDataContext } from '@/app/helpers/context'
 
-const VideoBlock = ({ url, date, style }) => {
+const VideoBlock = () => {
+    const data = useContext(MainImageDataContext);
+    
     return (
-        <>
-            <iframe src={url} style={style} />
-            <RenderDate date={date} />
-        </>
+        <div className={data.className}>
+            <iframe src={data.url} />
+            {data.date && <RenderDate date={data.date} />}
+        </div>
     )
-}
-
-VideoBlock.propTypes = {
-    url: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    style: PropTypes.object
 }
 
 export default VideoBlock
