@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setTodayData, setMainImage } from '@/app/store/actions'
+import { setTodayData, setMainImage } from '@/app/store/actions/mainImageActions'
 import MainImage from './MainImage'
 
 const MainImageContainer = (props) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setStateForModalWindow } from '@/app/store/actions'
+import { setStateForModalWindow } from '@/app/store/actions/modalWindowActions'
 import ModalWindow from './ModalWindow'
 
 const ModalWindowContainer = (props) => {

@@ -6,7 +6,7 @@ import {
     changeDataIntervalInImageCatalog,
     countItemsForOneIteration,
     loaderInImageCatalog
-} from '@/app/store/actions'
+} from '@/app/store/actions/imageCatalogActions'
 import ImageCatalog from './ImageCatalog'
 
 const ImageCatalogContainer = (props) => {

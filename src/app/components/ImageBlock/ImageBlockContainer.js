@@ -6,7 +6,7 @@ import {
     setMainDataForModalWindow,
     setDateForModalWindow,
     setExplanationForModalWindow
-} from '@/app/store/actions'
+} from '@/app/store/actions/modalWindowActions'
 import ImageBlock from './ImageBlock'
 
 const ImageBlockContainer = (props) => {
