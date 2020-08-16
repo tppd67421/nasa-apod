@@ -51,7 +51,9 @@ const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData 
             const date = nasaParse.date
             const mediaType = nasaParse.media_type
             const url = mediaType === C.MEDIA_TYPE_IMAGE ? nasaParse.hdurl : nasaParse.url
-            const targetObj = { date, url, mediaType }
+            const explanation = nasaParse.explanation
+            const title = nasaParse.title
+            const targetObj = { date, url, explanation, title, mediaType }
 
             if (selectedDate) {
                 changeImage(targetObj)
@@ -61,7 +63,13 @@ const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData 
         } catch (error) {
             console.log('Error: ', error)
 
-            const targetObj = { date: selectedDate, url: null, mediaType: null }
+            const targetObj = {
+                date: selectedDate,
+                url: null,
+                explanation: null,
+                title: null,
+                mediaType: null
+            }
 
             if (selectedDate) {
                 changeImage(targetObj)
@@ -83,7 +91,9 @@ const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData 
 
     const contextObj = {
         className: 'main-image__wrapper',
-        url: checkTodayDate() ? todayData.url : imageData.url
+        url: checkTodayDate() ? todayData.url : imageData.url,
+        // itemCounter used for get data from state and set to ModalWindow
+        itemCounter: C.MAIN_IMAGE_ATTRIBUTE
     }
 
     return (

@@ -5,6 +5,8 @@ import store from './store/store'
 import App from './components/App.js'
 import '@/assets/styles/main.scss'
 
+window.store = store
+
 render(
     <Provider store={store}>
         <App />

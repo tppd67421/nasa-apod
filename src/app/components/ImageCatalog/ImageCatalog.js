@@ -95,11 +95,12 @@ const ImageCatalog = ({
                 loadMore={checkScrollScreen}
             >
                 <div className='image-catalog__wrap'>
-                    {imagesArray.map(item => (
+                    {imagesArray.map((item, counter) => (
                         <MainImageDataContext.Provider key={item.date} value={{
                             className: 'image-catalog__item',
                             url: item.url,
-                            // date: item.date
+                            // itemCounter used for get data from state and set to ModalWindow
+                            itemCounter: counter
                         }}>
                             <RenderingContentDependingOnTheType
                                 mediaType={item.media_type}
