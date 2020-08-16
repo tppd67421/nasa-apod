@@ -96,12 +96,14 @@ const ImageCatalog = ({
             >
                 <div className='image-catalog__wrap'>
                     {imagesArray.map((item, counter) => (
-                        <MainImageDataContext.Provider key={item.date} value={{
-                            className: 'image-catalog__item',
-                            url: item.url,
-                            // itemCounter used for get data from state and set to ModalWindow
-                            itemCounter: counter
-                        }}>
+                        <MainImageDataContext.Provider
+                            key={item.date}
+                            value={{
+                                className: 'image-catalog__item',
+                                url: item.url,
+                                // itemCounter used for get data from state and set to ModalWindow
+                                itemCounter: counter
+                            }}>
                             <RenderingContentDependingOnTheType
                                 mediaType={item.media_type}
                             />
