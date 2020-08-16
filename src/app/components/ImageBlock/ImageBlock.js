@@ -1,5 +1,6 @@
 import React, { useContext, useRef } from 'react'
 import C from '@/app/constants/appConstants'
+import checkTodayDate from '@/app/helpers/checkTodayDate'
 import { MainImageDataContext } from '@/app/helpers/context'
 
 const ImageBlock = ({
@@ -10,6 +11,7 @@ const ImageBlock = ({
     setDateForModalWindow,
     setExplanationForModalWindow,
     mainImage,
+    todayImage,
     itemsFromImageCatalog
 }) => {
     const data = useContext(MainImageDataContext);
@@ -20,7 +22,9 @@ const ImageBlock = ({
             case C.MAIN_IMAGE_ATTRIBUTE:
                 setTitleForModalWindow(mainImage.title)
                 setMainDataForModalWindow(mainImage.url)
-                setDateForModalWindow(mainImage.date)
+                checkTodayDate(mainImage.date)
+                    ? setDateForModalWindow(todayImage.date)
+                    : setDateForModalWindow(mainImage.date)
                 setExplanationForModalWindow(mainImage.explanation)
                 break;
 
@@ -33,7 +37,7 @@ const ImageBlock = ({
                 break;
         }
     }
-    
+
     const changeModalWindow = () => {
         if (!modalWindowShowed) {
             changeStateForModalWindow(image.current.getAttribute('data-item-counter'))

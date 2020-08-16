@@ -16,6 +16,7 @@ const ImageBlockContainer = (props) => {
 const mapStateToProps = (state) => ({
     modalWindowShowed: state.modalWindow.modalWindowState,
     mainImage: state.mainImage.imageData,
+    todayImage: state.mainImage.todayData,
     itemsFromImageCatalog: state.imageCatalog.items
 })
 

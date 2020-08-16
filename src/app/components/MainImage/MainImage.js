@@ -4,6 +4,7 @@ import { writeToLocalStorage, readFromLocalStorage } from '@/app/helpers/workWit
 import queryString from '@/app/helpers/queryString'
 import C from '@/app/constants/appConstants'
 import { MainImageDataContext } from '@/app/helpers/context'
+import checkTodayDate from '@/app/helpers/checkTodayDate'
 import './MainImage.scss'
 
 const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData }) => {
@@ -37,7 +38,7 @@ const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData 
             }
         }
 
-        if (imageData.date === todayData.date) changeImage({ ...imageData, date: C.TODAY })
+        if (imageData.date === todayData.date) changeImage({ ...todayData, date: C.TODAY })
         writeToLocalStorage(C.LOCAL_STORAGE_KEY, JSON.stringify({ ...mainImage }))
     }, [mainImage])
 
@@ -84,14 +85,9 @@ const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData 
         ajaxQuery(value)
     }
 
-    const checkTodayDate = () => {
-        if (imageData.date === C.TODAY) return true
-        else return false
-    }
-
     const contextObj = {
         className: 'main-image__wrapper',
-        url: checkTodayDate() ? todayData.url : imageData.url,
+        url: imageData.url,
         // itemCounter used for get data from state and set to ModalWindow
         itemCounter: C.MAIN_IMAGE_ATTRIBUTE
     }
@@ -100,7 +96,7 @@ const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData 
         <section className='main-image'>
             <MainImageDataContext.Provider value={contextObj}>
                 <RenderingContentDependingOnTheType
-                    mediaType={checkTodayDate() ? todayData.mediaType : imageData.mediaType}
+                    mediaType={imageData.mediaType}
                 />
             </MainImageDataContext.Provider>
 
@@ -110,7 +106,7 @@ const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData 
                 className='main-image__input'
                 type="date"
                 max={todayData.date}
-                value={checkTodayDate() ? todayData.date : (imageData.date || '')}
+                value={checkTodayDate(imageData.date) ? todayData.date : (imageData.date || '')}
                 ref={input}
                 onChange={() => changeImage({ ...imageData, date: input.current.value })}
             />
