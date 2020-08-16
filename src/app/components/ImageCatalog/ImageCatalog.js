@@ -5,7 +5,7 @@ import { LoaderActive, LoaderEmpty } from './../loaders/loaders'
 import queryString from '@/app/helpers/queryString'
 import convertDateObjectToString from '@/app/helpers/convertDateObjectToString'
 import { MainImageDataContext } from '@/app/helpers/context'
-import C from '@/app/constants/constants'
+import C from '@/app/constants/appConstants'
 import './ImageCatalog.scss'
 
 const ImageCatalog = ({

@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from 'react'
-import C from '@/app/constants/constants'
+import C from '@/app/constants/appConstants'
 import { MainImageDataContext } from '@/app/helpers/context'
 
 const ImageBlock = ({

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ImageBlockContainer from '../ImageBlock/ImageBlockContainer'
 import VideoBlock from './../VideoBlock/VideoBlock'
-import C from '@/app/constants/constants'
+import C from '@/app/constants/appConstants'
 
 const RenderingContentDependingOnTheType = ({ mediaType }) => {
     switch (mediaType) {

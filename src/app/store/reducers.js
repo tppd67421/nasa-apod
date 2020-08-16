@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import C from '@/app/constants/constants'
+import AC from '@/app/constants/actionsConstants'
 
 const mainImage = (state = {}, action) => {
     switch (action.type) {
-        case C.SET_TODAY_DATA:
+        case AC.SET_TODAY_DATA:
             return {
                 ...state,
                 todayData: {
@@ -15,7 +15,7 @@ const mainImage = (state = {}, action) => {
                 }
             }
 
-        case C.CHANGE_MAIN_IMAGE:
+        case AC.CHANGE_MAIN_IMAGE:
             return {
                 ...state,
                 imageData: {
@@ -34,19 +34,19 @@ const mainImage = (state = {}, action) => {
 
 const imageCatalog = (state = {}, action) => {
     switch (action.type) {
-        case C.LOAD_IMAGES_TO_IMAGE_CATALOG:
+        case AC.LOAD_IMAGES_TO_IMAGE_CATALOG:
             return {
                 ...state,
                 items: action.items
             }
 
-        case C.LOAD_IMAGES_FOR_ONE_ITERATION_TO_IMAGE_CATALOG:
+        case AC.LOAD_IMAGES_FOR_ONE_ITERATION_TO_IMAGE_CATALOG:
             return {
                 ...state,
                 itemsForOneIteration: action.items
             }
 
-        case C.CHANGE_DATA_INTERVAL_IN_IMAGE_CATALOG:
+        case AC.CHANGE_DATA_INTERVAL_IN_IMAGE_CATALOG:
             return {
                 ...state,
                 date: {
@@ -55,13 +55,13 @@ const imageCatalog = (state = {}, action) => {
                 }
             }
 
-        case C.ITEMS_COUNTER_FOR_ONE_ITERATION:
+        case AC.ITEMS_COUNTER_FOR_ONE_ITERATION:
             return {
                 ...state,
                 itemsCounterForOneIteration: action.counter
             }
 
-        case C.LOADER_IN_IMAGE_CATALOG:
+        case AC.LOADER_IN_IMAGE_CATALOG:
             return {
                 ...state,
                 loader: action.loader
@@ -74,31 +74,31 @@ const imageCatalog = (state = {}, action) => {
 
 const modalWindow = (state = {}, action) => {
     switch (action.type) {
-        case C.SET_STATE_FOR_MODAL_WINDOW:
+        case AC.SET_STATE_FOR_MODAL_WINDOW:
             return {
                 ...state,
                 modalWindowState: action.state
             }
 
-        case C.SET_TITLE_FOR_MODAL_WINDOW:
+        case AC.SET_TITLE_FOR_MODAL_WINDOW:
             return {
                 ...state,
                 modalWindowTitle: action.title
             }
 
-        case C.SET_MAIN_DATA_FOR_MODAL_WINDOW:
+        case AC.SET_MAIN_DATA_FOR_MODAL_WINDOW:
             return {
                 ...state,
                 modalWindowMainData: action.mainData
             }
 
-        case C.SET_DATE_FOR_MODAL_WINDOW:
+        case AC.SET_DATE_FOR_MODAL_WINDOW:
             return {
                 ...state,
                 modalWindowDate: action.date
             }
 
-        case C.SET_EXPLANATION_FOR_MODAL_WINDOW:
+        case AC.SET_EXPLANATION_FOR_MODAL_WINDOW:
             return {
                 ...state,
                 modalWindowExplanation: action.explanation

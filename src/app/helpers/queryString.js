@@ -1,4 +1,4 @@
-import C from '@/app/constants/constants'
+import C from '@/app/constants/appConstants'
 
 const queryString = (date = '', startDate = '', endDate = '') => {
     const keyString = `${C.NASA_API_KEY_STRING}=${C.NASA_API_KEY}`

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType/RenderingContentDependingOnTheType';
 import { writeToLocalStorage, readFromLocalStorage } from '@/app/helpers/workWithLocalStorage'
 import queryString from '@/app/helpers/queryString'
-import C from '@/app/constants/constants'
+import C from '@/app/constants/appConstants'
 import { MainImageDataContext } from '@/app/helpers/context'
 import './MainImage.scss'
 
