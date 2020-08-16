@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-import reducer from './reducers'
+import reducer from './reducers/index'
 import initialState from './initialState.json'
 
 const store = createStore(reducer, initialState)
