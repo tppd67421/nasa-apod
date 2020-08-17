@@ -12,6 +12,9 @@ export const LoaderActive = () => {
 
 export const LoaderEmpty = () => {
     return (
-        <div className='loader-empty' />
+        <div className='loader-empty'>
+            <div className='loader-empty__ellips' />
+            <p>Loading...</p>
+        </div>
     )
 }
