@@ -88,28 +88,32 @@ const ImageCatalog = ({
         }
     };
 
+    const contextObj = (item, counter) => ({
+        className: 'image-catalog__item',
+        url: item.url,
+        // itemCounter used for get data from state and set to ModalWindow
+        itemCounter: counter
+    })
+
     return (
         <section className='image-catalog'>
             <InfiniteScroll
                 hasMore={true}
                 loadMore={checkScrollScreen}
             >
-                <div className='image-catalog__wrap'>
+                <ul className='image-catalog__wrap'>
                     {imagesArray.map((item, counter) => (
-                        <MainImageDataContext.Provider
-                            key={item.date}
-                            value={{
-                                className: 'image-catalog__item',
-                                url: item.url,
-                                // itemCounter used for get data from state and set to ModalWindow
-                                itemCounter: counter
-                            }}>
-                            <RenderingContentDependingOnTheType
-                                mediaType={item.media_type}
-                            />
-                        </MainImageDataContext.Provider>
+                        <li key={item.date}>
+                            <MainImageDataContext.Provider
+                                value={contextObj(item, counter)}
+                            >
+                                <RenderingContentDependingOnTheType
+                                    mediaType={item.media_type}
+                                />
+                            </MainImageDataContext.Provider>
+                        </li>
                     ))}
-                </div>
+                </ul>
                 {loader ? <LoaderActive /> : <LoaderEmpty />}
             </InfiniteScroll>
         </section>

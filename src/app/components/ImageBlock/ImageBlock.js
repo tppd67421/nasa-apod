@@ -48,15 +48,15 @@ const ImageBlock = ({
     }
 
     return (
-        <div className={data.className}>
+        <>
             <img
                 ref={image}
                 src={data.url}
-                className='image'
+                className={data.className}
                 data-item-counter={data.itemCounter}
                 onClick={() => changeModalWindow()}
             />
-        </div>
+        </>
     )
 }
 

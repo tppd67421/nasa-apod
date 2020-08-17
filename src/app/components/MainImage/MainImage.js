@@ -86,7 +86,7 @@ const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData 
     }
 
     const contextObj = {
-        className: 'main-image__wrapper',
+        className: 'main-image__image',
         url: imageData.url,
         // itemCounter used for get data from state and set to ModalWindow
         itemCounter: C.MAIN_IMAGE_ATTRIBUTE
