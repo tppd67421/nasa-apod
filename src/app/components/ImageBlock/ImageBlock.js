@@ -20,12 +20,17 @@ const ImageBlock = ({
     const changeStateForModalWindow = (attribute) => {
         switch (attribute) {
             case C.MAIN_IMAGE_ATTRIBUTE:
-                setTitleForModalWindow(mainImage.title)
-                setMainDataForModalWindow(mainImage.url)
-                checkTodayDate(mainImage.date)
-                    ? setDateForModalWindow(todayImage.date)
-                    : setDateForModalWindow(mainImage.date)
-                setExplanationForModalWindow(mainImage.explanation)
+                if (checkTodayDate(mainImage.date)) {
+                    setDateForModalWindow(todayImage.date)
+                    setTitleForModalWindow(todayImage.title)
+                    setMainDataForModalWindow(todayImage.url)
+                    setExplanationForModalWindow(todayImage.explanation)
+                } else {
+                    setDateForModalWindow(mainImage.date)
+                    setTitleForModalWindow(mainImage.title)
+                    setMainDataForModalWindow(mainImage.url)
+                    setExplanationForModalWindow(mainImage.explanation)
+                }
                 break;
 
             default:
