@@ -11,12 +11,10 @@ const ModalWindow = ({
     modalWindowDate,
     modalWindowExplanation
 }) => {
-    let dateObject = { day: '', month: '', year: '' }
+    const dateObject = modalWindowDate
+        ? convertStringDateToObject(modalWindowDate)
+        : { day: '', month: '', year: '' }
 
-    if (modalWindowDate) {
-        dateObject = convertStringDateToObject(modalWindowDate)
-    }
-    
     return (
         <Modal dialogClassName='modal-window' show={modalWindowShowed} onHide={() => setStateForModalWindow(false)} animation={false}>
             <Modal.Header className='modal-window__header' closeButton>
