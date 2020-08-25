@@ -1,0 +1,15 @@
+@mixin video-item {
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 19px;
+        top: 15px;
+        left: 15px;
+        background-image: url(../../../assets/images/video-icon.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}

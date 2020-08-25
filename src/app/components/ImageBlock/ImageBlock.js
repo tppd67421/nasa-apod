@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext } from 'react'
 import C from '@/app/constants/appConstants'
 import checkTodayDate from '@/app/helpers/checkTodayDate'
 import { MainImageDataContext } from '@/app/helpers/context'
@@ -14,48 +14,53 @@ const ImageBlock = ({
     todayImage,
     itemsFromImageCatalog
 }) => {
-    const data = useContext(MainImageDataContext);
-    const image = useRef();
+    const data = useContext(MainImageDataContext)
+
+    const imgCreator = (imgLink) => (
+        <a href={imgLink}  target='_blank'>
+            <img
+                className='modal-window__main-data'
+                src={imgLink}
+            />
+        </a>
+    )
 
     const changeStateForModalWindow = (attribute) => {
         switch (attribute) {
             case C.MAIN_IMAGE_ATTRIBUTE:
                 if (checkTodayDate(mainImage.date)) {
-                    setDateForModalWindow(todayImage.date)
                     setTitleForModalWindow(todayImage.title)
-                    setMainDataForModalWindow(todayImage.url)
+                    setMainDataForModalWindow(imgCreator(todayImage.url))
                     setExplanationForModalWindow(todayImage.explanation)
+                    setDateForModalWindow(todayImage.date)
                 } else {
-                    setDateForModalWindow(mainImage.date)
                     setTitleForModalWindow(mainImage.title)
-                    setMainDataForModalWindow(mainImage.url)
+                    setMainDataForModalWindow(imgCreator(mainImage.url))
                     setExplanationForModalWindow(mainImage.explanation)
+                    setDateForModalWindow(mainImage.date)
                 }
-                break;
+                break
 
             default:
                 const targetItem = itemsFromImageCatalog[attribute]
                 setTitleForModalWindow(targetItem.title)
-                setMainDataForModalWindow(targetItem.hdurl)
-                setDateForModalWindow(targetItem.date)
+                setMainDataForModalWindow(imgCreator(targetItem.hdurl))
                 setExplanationForModalWindow(targetItem.explanation)
-                break;
+                setDateForModalWindow(targetItem.date)
+                break
         }
     }
 
     const changeModalWindow = () => {
         if (!modalWindowShowed) {
-            changeStateForModalWindow(image.current.getAttribute('data-item-counter'))
+            changeStateForModalWindow(data.itemCounter)
             setStateForModalWindow(true)
-        } else {
-            setStateForModalWindow(false)
         }
     }
 
     return (
         <>
             <img
-                ref={image}
                 src={data.url}
                 className={data.className}
                 data-item-counter={data.itemCounter}

@@ -23,7 +23,7 @@ const ModalWindow = ({
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className='modal-window__body'>
-                <img src={modalWindowMainData} />
+                {modalWindowMainData}
                 <p>{modalWindowExplanation}</p>
             </Modal.Body>
             <Modal.Footer>

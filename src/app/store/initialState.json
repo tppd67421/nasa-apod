@@ -27,9 +27,9 @@
     },
     "modalWindow": {
         "modalWindowState": false,
-        "modalWindowTitle": "",
-        "modalWindowMainData": "",
-        "modalWindowDate": "",
-        "modalWindowExplanation": ""
+        "modalWindowTitle": null,
+        "modalWindowMainData": null,
+        "modalWindowDate": null,
+        "modalWindowExplanation": null
     }
 }

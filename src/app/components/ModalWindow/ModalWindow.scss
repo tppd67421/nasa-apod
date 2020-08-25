@@ -16,11 +16,16 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        img {
-            margin-bottom: 20px;
-        }
         & > * {
             max-width: 100%;
+        }
+    }
+    &__main-data {
+        margin-bottom: 20px;
+        width: 100%;
+        &_video {
+            width: 90%;
+            height: 700px;
         }
     }
 }

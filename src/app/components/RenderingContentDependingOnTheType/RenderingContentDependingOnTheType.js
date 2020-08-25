@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ImageBlockContainer from '../ImageBlock/ImageBlockContainer'
-import VideoBlock from './../VideoBlock/VideoBlock'
+import VideoBlockContainer from './../VideoBlock/VideoBlockContainer'
+import ErrorComponent from './../ErrorComponent/ErrorComponent'
 import C from '@/app/constants/appConstants'
 
 const RenderingContentDependingOnTheType = ({ mediaType }) => {
@@ -10,10 +11,10 @@ const RenderingContentDependingOnTheType = ({ mediaType }) => {
             return <ImageBlockContainer />
 
         case C.MEDIA_TYPE_VIDEO:
-            return <VideoBlock />
+            return <VideoBlockContainer />
 
         default:
-            return <strong>We have nothing on this date</strong>
+            return <ErrorComponent />
     }
 }
 
