@@ -39,6 +39,7 @@ const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData 
         }
 
         if (imageData.date === todayData.date) changeImage({ ...todayData, date: C.TODAY })
+        
         writeToLocalStorage(C.LOCAL_STORAGE_KEY, JSON.stringify({ ...mainImage }))
     }, [mainImage])
 
@@ -96,7 +97,7 @@ const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData 
         <section className='main-image'>
             <MainImageDataContext.Provider value={contextObj}>
                 <RenderingContentDependingOnTheType
-                    mediaType={imageData.mediaType}
+                    mediaType={checkTodayDate(imageData.date) ? todayData.mediaType : imageData.mediaType}
                 />
             </MainImageDataContext.Provider>
 
