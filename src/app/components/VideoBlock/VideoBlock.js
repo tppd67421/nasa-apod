@@ -16,7 +16,9 @@ const VideoBlock = ({
     setExplanationForModalWindow,
     mainImage,
     todayImage,
-    itemsFromImageCatalog
+    itemsFromImageCatalog,
+    itemsCounterForPreloader,
+    updateItemsCounterForPreloader
 }) => {
     const data = useContext(MainImageDataContext)
     const imageWrap = useRef()
@@ -178,6 +180,7 @@ const VideoBlock = ({
 
     const imageLoaded = () => {
         imageWrap.current.classList.remove(C.CLASS_FOR_LOADED_ELEMENTS)
+        updateItemsCounterForPreloader(++itemsCounterForPreloader)
     }
 
     return (

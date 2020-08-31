@@ -7,14 +7,24 @@ import { MainImageDataContext } from '@/app/helpers/context'
 import checkTodayDate from '@/app/helpers/checkTodayDate'
 import './MainImage.scss'
 
-const MainImage = ({ mainImage, imageData, changeImage, todayData, setTodayData }) => {
+const MainImage = ({
+    mainImage,
+    imageData,
+    changeImage,
+    todayData,
+    setTodayData,
+    itemsCounterForPreloader,
+    updateItemsCounterForPreloader
+}) => {
     const dataFromLocalStorage = JSON.parse(readFromLocalStorage(C.LOCAL_STORAGE_KEY))
 
     const input = useRef();
 
     useEffect(() => {
         ajaxQuery()
-
+// console.log(itemsCounterForPreloader)
+// updateItemsCounterForPreloader(itemsCounterForPreloader++)
+// console.log(itemsCounterForPreloader)
         input.current.addEventListener('change', setNewDate)
 
         return () => input.current.removeEventListener('change', setNewDate)

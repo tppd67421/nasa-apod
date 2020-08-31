@@ -13,7 +13,8 @@ const appConstants = {
 
     MAIN_IMAGE_ATTRIBUTE: 'main-image',
 
-    CLASS_FOR_LOADED_ELEMENTS: 'loading'
+    CLASS_FOR_LOADED_ELEMENTS: 'loading',
+    ITEMS_ON_PAGE_WITH_FIRST_ITERATION: 25
 }
 
 export default appConstants

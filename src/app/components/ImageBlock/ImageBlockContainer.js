@@ -7,6 +7,7 @@ import {
     setDateForModalWindow,
     setExplanationForModalWindow
 } from '@/app/store/actions/modalWindowActions'
+import { updateItemsCounterForPreloader } from '@/app/store/actions/preloaderActions'
 import ImageBlock from './ImageBlock'
 
 const ImageBlockContainer = (props) => {
@@ -17,7 +18,8 @@ const mapStateToProps = (state) => ({
     modalWindowShowed: state.modalWindow.modalWindowState,
     mainImage: state.mainImage.imageData,
     todayImage: state.mainImage.todayData,
-    itemsFromImageCatalog: state.imageCatalog.items
+    itemsFromImageCatalog: state.imageCatalog.items,
+    itemsCounterForPreloader: state.preloader.itemsCounterForPreloader
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -39,6 +41,9 @@ const mapDispatchToProps = (dispatch) => ({
 
     setExplanationForModalWindow(explanation) {
         dispatch(setExplanationForModalWindow(explanation))
+    },
+    updateItemsCounterForPreloader(data) {
+        dispatch(updateItemsCounterForPreloader(data))
     }
 })
 

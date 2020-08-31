@@ -31,5 +31,8 @@
         "modalWindowMainData": null,
         "modalWindowDate": null,
         "modalWindowExplanation": null
+    },
+    "preloader": {
+        "itemsCounterForPreloader": 0
     }
 }
