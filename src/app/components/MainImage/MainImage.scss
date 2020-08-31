@@ -9,11 +9,12 @@
         width: 100%;
         @include video-item;
     }
+    &__image-wrap.loading::before {
+        border-radius: 0;
+    }
     &__image {
-        cursor: pointer;
         width: 100%;
         height: 100vh;
-        object-fit: cover;
     }
     &__title {
         font-family: 'Playfair Display', serif;
@@ -32,7 +33,7 @@
         margin-bottom: 70px;
         &::-webkit-calendar-picker-indicator {
             cursor: pointer;
-            background: url(../../../assets/images/calendar.svg);
+            background: url(~@/assets/images/calendar.svg);
             background-size: auto 70%;
             background-repeat: no-repeat;
             background-position: center;

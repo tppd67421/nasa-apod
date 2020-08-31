@@ -11,7 +11,9 @@ const appConstants = {
     LOCAL_STORAGE_KEY: 'all-data',
     ITEMS_ON_PAGE: 24,
 
-    MAIN_IMAGE_ATTRIBUTE: 'main-image'
+    MAIN_IMAGE_ATTRIBUTE: 'main-image',
+
+    CLASS_FOR_LOADED_ELEMENTS: 'loading'
 }
 
 export default appConstants

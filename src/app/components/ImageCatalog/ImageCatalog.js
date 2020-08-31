@@ -89,7 +89,7 @@ const ImageCatalog = ({
     };
 
     const contextObj = (item, counter) => ({
-        className: 'image-catalog__item',
+        className: 'image-catalog__image',
         url: item.url,
         // itemCounter used for get data from state and set to ModalWindow
         itemCounter: counter

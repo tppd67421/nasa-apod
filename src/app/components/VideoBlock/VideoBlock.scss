@@ -1,0 +1,6 @@
+@import '~@/assets/styles/mixins';
+
+.image-catalog__image_video-wrap,
+.main-image__image_video-wrap {
+    @include loading-item;
+}

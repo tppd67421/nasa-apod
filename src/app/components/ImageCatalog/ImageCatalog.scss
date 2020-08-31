@@ -7,28 +7,27 @@
         flex-wrap: wrap;
         justify-content: center;
     }
-    &__item,
+    &__image,
     .error-component {
         width: $image-catalog-item-width;
         height: $image-catalog-item-height;
         box-shadow: $image-catalog-item-box-shadow;
         border-radius: 5px;
-        margin: 30px;
     }
     .error-component {
         font-size: 20px;
     }
-    &__item {
-        cursor: pointer;
-        object-fit: cover;
-        &_video-wrap {
-            margin: 30px;
-            @include video-item;
-            & > * {
-                // set margin in &_video-wrap and clear here
-                // needed for video icons
-                margin: 0;
-            }
+    &__image-wrap {
+        margin: 30px;
+        border-radius: 5px;
+    }
+    &__image_video-wrap {
+        margin: 30px;
+        @include video-item;
+        & > * {
+            // set margin in &_video-wrap and clear here
+            // needed for video icons
+            margin: 0;
         }
     }
 }

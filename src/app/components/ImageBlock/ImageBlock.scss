@@ -1,0 +1,16 @@
+@import '~@/assets/styles/mixins';
+
+.image-catalog__image-wrap,
+.main-image__image-wrap {
+    @include loading-item;
+}
+
+.main-image__image-wrap {
+    width: 100%;
+}
+
+.image-catalog__image,
+.main-image__image {
+    cursor: pointer;
+    object-fit: cover;
+}

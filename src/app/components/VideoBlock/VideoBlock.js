@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import ErrorComponent from './../ErrorComponent/ErrorComponent'
 import { MainImageDataContext } from '@/app/helpers/context'
+import checkImageInCache from '@/app/helpers/checkImageInCache'
 import checkTodayDate from '@/app/helpers/checkTodayDate'
 import C from '@/app/constants/appConstants'
 import TC from '@/app/constants/thumbnailFromVideoConstants'
+import './VideoBlock.scss'
 
 const VideoBlock = ({
     modalWindowShowed,
@@ -17,6 +19,7 @@ const VideoBlock = ({
     itemsFromImageCatalog
 }) => {
     const data = useContext(MainImageDataContext)
+    const imageWrap = useRef()
 
     const regExpVimeo = /(http|https)?:\/\/(www\.)?(vimeo.com\/|player.vimeo.com\/video\/)([0-9]+)/g
     const regExpYoutube = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/g
@@ -27,6 +30,17 @@ const VideoBlock = ({
     useEffect(() => {
         renderVideo()
     }, [mainImage])
+
+    useEffect(() => {
+        if (videoThumbnail) {
+            if (checkImageInCache(videoThumbnail)) {
+                imageWrap.current.classList.remove(C.CLASS_FOR_LOADED_ELEMENTS)
+            } else {
+                imageWrap.current.classList.add(C.CLASS_FOR_LOADED_ELEMENTS)
+            }
+        }
+        return () => imageWrap.current.classList.remove(C.CLASS_FOR_LOADED_ELEMENTS)
+    }, [videoThumbnail])
 
     const iframeCreator = (iframeLink) => (
         <iframe
@@ -71,7 +85,7 @@ const VideoBlock = ({
         }
 
         const bigThumbnail = new Image()
-        
+
         switch (data.itemCounter) {
             case C.MAIN_IMAGE_ATTRIBUTE:
                 new Promise((resolve) => {
@@ -123,10 +137,10 @@ const VideoBlock = ({
     }
 
     const getThumbnailFromVimeoVideo = async (vimeoVideoId) => {
-        await fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${vimeoVideoId}`)
+        await fetch(TC.VIMEO_GET_THUMBNAIL_ID(vimeoVideoId))
             .then(res => res.json())
             .then(res => res.thumbnail_url.match(/vimeo.*\/(\d+)/i).pop())
-            .then(res => setVideoThumbnail(`https://i.vimeocdn.com/video/${res}.jpg`))
+            .then(res => setVideoThumbnail(TC.VIMEO_GET_THUMBNAIL(res)))
     }
 
     const changeStateForModalWindow = (attribute) => {
@@ -162,17 +176,25 @@ const VideoBlock = ({
         }
     }
 
+    const imageLoaded = () => {
+        imageWrap.current.classList.remove(C.CLASS_FOR_LOADED_ELEMENTS)
+    }
+
     return (
         <>
             {
                 stateErrorComponent
                     ? <ErrorComponent />
-                    : <div className={`${data.className}_video-wrap`}>
+                    : <div
+                        className={`${data.className}_video-wrap ${C.CLASS_FOR_LOADED_ELEMENTS}`}
+                        ref={imageWrap}
+                    >
                         <img
                             className={`${data.className} ${data.className}_video`}
                             data-item-counter={data.itemCounter}
                             onClick={() => changeModalWindow()}
                             src={videoThumbnail}
+                            onLoad={() => imageLoaded()}
                         />
                     </div>
             }

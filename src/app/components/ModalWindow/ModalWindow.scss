@@ -1,8 +1,23 @@
 @import '~bootstrap/scss/bootstrap';
+@import '~@/assets/styles/mixins';
 
 .modal-window {
     max-width: none;
     width: 90%;
+    .loading {
+        @include loading-item;
+        margin-bottom: 20px;
+        width: 100%;
+        height: 700px;
+        pointer-events: none;
+        &.loading::before {
+            border-radius: 0;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
     &__header {
         width: 100%;
         & > div {
