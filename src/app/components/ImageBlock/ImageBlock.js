@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useRef } from 'react'
 import C from '@/app/constants/appConstants'
 import checkTodayDate from '@/app/helpers/checkTodayDate'
 import checkImageInCache from '@/app/helpers/checkImageInCache'
+import removeParentClass from '@/app/helpers/removeParentClass'
 import { MainImageDataContext } from '@/app/helpers/context'
 import './ImageBlock.scss'
 
@@ -35,11 +36,7 @@ const ImageBlock = ({
             <img
                 className='modal-window__main-data'
                 src={imgLink}
-                onLoad={
-                    (e) => e.target
-                        .closest(`.${C.CLASS_FOR_LOADED_ELEMENTS}`)
-                        .classList.remove(C.CLASS_FOR_LOADED_ELEMENTS)
-                }
+                onLoad={(e) => removeParentClass(e.target)}
             />
         </a>
     )

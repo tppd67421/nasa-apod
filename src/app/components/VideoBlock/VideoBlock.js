@@ -3,6 +3,7 @@ import ErrorComponent from './../ErrorComponent/ErrorComponent'
 import { MainImageDataContext } from '@/app/helpers/context'
 import checkImageInCache from '@/app/helpers/checkImageInCache'
 import checkTodayDate from '@/app/helpers/checkTodayDate'
+import removeParentClass from '@/app/helpers/removeParentClass'
 import C from '@/app/constants/appConstants'
 import TC from '@/app/constants/thumbnailFromVideoConstants'
 import './VideoBlock.scss'
@@ -45,10 +46,13 @@ const VideoBlock = ({
     }, [videoThumbnail])
 
     const iframeCreator = (iframeLink) => (
-        <iframe
-            className='modal-window__main-data modal-window__main-data_video'
-            src={iframeLink}
-        />
+        <div className={`modal-window__iframe-wrap ${C.CLASS_FOR_LOADED_ELEMENTS}`}>
+            <iframe
+                className='modal-window__main-data modal-window__main-data_video'
+                src={iframeLink}
+                onLoad={(e) => removeParentClass(e.target)}
+            />
+        </div>
     )
 
     const renderVideo = () => {
