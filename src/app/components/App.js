@@ -18,7 +18,7 @@ const App = ({ itemsCounterForPreloader }) => {
 
     itemsCounterForPreloader < C.ITEMS_ON_PAGE_WITH_FIRST_ITERATION
         ? document.body.style.overflow = 'hidden'
-        : document.body.style.overflow = 'auto'
+        : document.body.removeAttribute('style')
 
     return (
         <>
