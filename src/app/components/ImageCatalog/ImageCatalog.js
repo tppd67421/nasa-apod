@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import InfiniteScroll from '@alexcambose/react-infinite-scroll';
 import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType/RenderingContentDependingOnTheType';
 import { LoaderActive, LoaderEmpty } from './../loaders/loaders'
+import ApplicationError from './../ApplicationError/ApplicationError'
 import queryString from '@/app/helpers/queryString'
 import convertDateObjectToString from '@/app/helpers/convertDateObjectToString'
 import { MainImageDataContext } from '@/app/helpers/context'
@@ -22,6 +23,8 @@ const ImageCatalog = ({
     todayDate
 }) => {
     let startDate, endDate
+
+    const [errorComponent, setStateErrorComponent] = useState(false)
 
     useEffect(() => {
         // if we have less them 24 items
@@ -70,6 +73,8 @@ const ImageCatalog = ({
             countItemsForOneIteration(nasaParse.length + itemsCounter)
         } catch (error) {
             console.log(error)
+            
+            setStateErrorComponent(true)
         }
     }
 
@@ -96,27 +101,31 @@ const ImageCatalog = ({
     })
 
     return (
-        <section className='image-catalog'>
-            <InfiniteScroll
-                hasMore={true}
-                loadMore={checkScrollScreen}
-            >
-                <ul className='image-catalog__wrap'>
-                    {imagesArray.map((item, counter) => (
-                        <li key={item.date}>
-                            <MainImageDataContext.Provider
-                                value={contextObj(item, counter)}
-                            >
-                                <RenderingContentDependingOnTheType
-                                    mediaType={item.media_type}
-                                />
-                            </MainImageDataContext.Provider>
-                        </li>
-                    ))}
-                </ul>
-                {loader ? <LoaderActive /> : <LoaderEmpty />}
-            </InfiniteScroll>
-        </section>
+        <>
+            {errorComponent && <ApplicationError />}
+
+            <section className='image-catalog'>
+                <InfiniteScroll
+                    hasMore={true}
+                    loadMore={checkScrollScreen}
+                >
+                    <ul className='image-catalog__wrap'>
+                        {imagesArray.map((item, counter) => (
+                            <li key={item.date}>
+                                <MainImageDataContext.Provider
+                                    value={contextObj(item, counter)}
+                                >
+                                    <RenderingContentDependingOnTheType
+                                        mediaType={item.media_type}
+                                    />
+                                </MainImageDataContext.Provider>
+                            </li>
+                        ))}
+                    </ul>
+                    {loader ? <LoaderActive /> : <LoaderEmpty />}
+                </InfiniteScroll>
+            </section>
+        </>
     )
 }
 

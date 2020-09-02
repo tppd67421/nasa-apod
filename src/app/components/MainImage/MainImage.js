@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import RenderingContentDependingOnTheType from './../RenderingContentDependingOnTheType/RenderingContentDependingOnTheType';
+import ApplicationError from './../ApplicationError/ApplicationError'
 import { writeToLocalStorage, readFromLocalStorage } from '@/app/helpers/workWithLocalStorage'
 import queryString from '@/app/helpers/queryString'
 import C from '@/app/constants/appConstants'
@@ -17,6 +18,7 @@ const MainImage = ({
     const dataFromLocalStorage = JSON.parse(readFromLocalStorage(C.LOCAL_STORAGE_KEY))
 
     const input = useRef();
+    const [errorComponent, setStateErrorComponent] = useState(false)
 
     useEffect(() => {
         ajaxQuery()
@@ -44,7 +46,7 @@ const MainImage = ({
         }
 
         if (imageData.date === todayData.date) changeImage({ ...todayData, date: C.TODAY })
-        
+
         writeToLocalStorage(C.LOCAL_STORAGE_KEY, JSON.stringify({ ...mainImage }))
     }, [mainImage])
 
@@ -69,6 +71,8 @@ const MainImage = ({
             }
         } catch (error) {
             console.log('Error: ', error)
+
+            setStateErrorComponent(true)
 
             const targetObj = {
                 date: selectedDate,
@@ -99,24 +103,28 @@ const MainImage = ({
     }
 
     return (
-        <section className='main-image'>
-            <MainImageDataContext.Provider value={contextObj}>
-                <RenderingContentDependingOnTheType
-                    mediaType={checkTodayDate(imageData.date) ? todayData.mediaType : imageData.mediaType}
+        <>
+            {errorComponent && <ApplicationError />}
+
+            <section className='main-image'>
+                <MainImageDataContext.Provider value={contextObj}>
+                    <RenderingContentDependingOnTheType
+                        mediaType={checkTodayDate(imageData.date) ? todayData.mediaType : imageData.mediaType}
+                    />
+                </MainImageDataContext.Provider>
+
+                <h1 className='main-image__title'>NASA. APOD: Astronomy Picture of the Day</h1>
+
+                <input
+                    className='main-image__input'
+                    type="date"
+                    max={todayData.date}
+                    value={checkTodayDate(imageData.date) ? todayData.date : (imageData.date || '')}
+                    ref={input}
+                    onChange={() => changeImage({ ...imageData, date: input.current.value })}
                 />
-            </MainImageDataContext.Provider>
-
-            <h1 className='main-image__title'>NASA. APOD: Astronomy Picture of the Day</h1>
-
-            <input
-                className='main-image__input'
-                type="date"
-                max={todayData.date}
-                value={checkTodayDate(imageData.date) ? todayData.date : (imageData.date || '')}
-                ref={input}
-                onChange={() => changeImage({ ...imageData, date: input.current.value })}
-            />
-        </section>
+            </section>
+        </>
     )
 }
 

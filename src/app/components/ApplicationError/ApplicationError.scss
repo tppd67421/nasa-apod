@@ -1,0 +1,35 @@
+@import '~@/assets/styles/variables';
+
+.application-error {
+    position: fixed;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: $blue-color;
+    color: $light-color;
+    font-family: $primary-font;
+    letter-spacing: 2px;
+    text-align: center;
+    &__items-wrap {
+        position: relative;
+        top: 30%;
+    }
+    &__header {
+        line-height: 1.5;
+        font-size: 35px;
+        pointer-events: none;
+    }
+    &__reload-button {
+        margin-top: 30px;
+        letter-spacing: 1.5px;
+        font-size: 20px;
+        color: $light-color;
+        box-shadow: $image-catalog-item-box-shadow;
+        border-radius: 5px;
+        font-family: $secondary-font;
+        padding: 10px 20px;
+        background-color: rgb(29, 29, 29);
+    }
+}

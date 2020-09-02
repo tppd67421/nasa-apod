@@ -3,7 +3,7 @@ import './Preloader.scss'
 
 const Preloader = ({ className }) => {
     return (
-        <div className={`preloader ${className}`}>
+        <section className={`preloader ${className}`}>
             <div className='preloader__content'>
                 <div className='loader-circle'></div>
                 <div className='loader-line-mask'>
@@ -11,7 +11,7 @@ const Preloader = ({ className }) => {
                 </div>
                 <p className='preloader__text'>NASA</p>
             </div>
-        </div>
+        </section>
     )
 }
 

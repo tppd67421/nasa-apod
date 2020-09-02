@@ -17,7 +17,7 @@
         height: 100vh;
     }
     &__title {
-        font-family: 'Playfair Display', serif;
+        font-family: $primary-font;
         color: $light-color;
         text-align: center;
         margin: 50px;
@@ -31,7 +31,7 @@
         }
     }
     &__input {
-        font-family: 'Exo 2', sans-serif;
+        font-family: $secondary-font;
         color: $light-color;
         border: 1.5px solid $light-color;
         font-size: 20px;
