@@ -1,3 +1,37 @@
+@import '~@/assets/styles/variables';
+
+// screens
+@mixin mobile-tiny() {
+    @media (max-width: $screen-mobile-tiny) {
+        @content;
+    }
+}
+
+@mixin tablet() {
+    @media (max-width: $screen-tablet) {
+        @content;
+    }
+}
+
+@mixin laptop() {
+    @media (max-width: $screen-laptop) {
+        @content;
+    }
+}
+
+@mixin laptop-large() {
+    @media (max-width: $screen-laptop-large) {
+        @content;
+    }
+}
+
+@mixin desktop() {
+    @media (max-width: $screen-desktop) {
+        @content;
+    }
+}
+
+// another mixins
 @mixin video-item {
     position: relative;
     &::after {
@@ -11,6 +45,26 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+    }
+}
+
+@mixin aspect-ratio-11-for-images {
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+    margin: 0;
+    .image-catalog__image {
+        &,
+        &_video {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
     }
 }
 

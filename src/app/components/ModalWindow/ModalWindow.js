@@ -16,7 +16,12 @@ const ModalWindow = ({
         : { day: '', month: '', year: '' }
 
     return (
-        <Modal dialogClassName='modal-window' show={modalWindowShowed} onHide={() => setStateForModalWindow(false)} animation={false}>
+        <Modal
+            dialogClassName='modal-window'
+            show={modalWindowShowed}
+            onHide={() => setStateForModalWindow(false)}
+            animation={false}
+        >
             <Modal.Header className='modal-window__header' closeButton>
                 <Modal.Title>
                     <h2 className='modal-window__title'>{modalWindowTitle}</h2>

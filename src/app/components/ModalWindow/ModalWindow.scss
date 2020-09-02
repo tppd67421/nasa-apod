@@ -4,12 +4,22 @@
 .modal-window {
     max-width: none;
     width: 90%;
+    @include tablet {
+        margin: 1rem auto;
+    }
+    @include mobile-tiny {
+        margin: 0.5rem auto;
+        width: 95%;
+    }
     .loading {
         @include loading-item;
         margin-bottom: 20px;
         width: 100%;
-        height: 700px;
+        height: 0;
+        // aspect ratio 16:9
+        padding-top: 56.25%;
         pointer-events: none;
+        position: relative;
         &.loading::before {
             border-radius: 0;
         }
@@ -25,7 +35,11 @@
         }
     }
     &__title {
+        line-height: 1.1;
         text-align: center;
+        @include tablet {
+            font-size: 28px;
+        }
     }
     &__body {
         display: flex;
@@ -39,14 +53,21 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 90% !important;
+        width: 100%;
+        position: relative;
+        margin-bottom: 20px;
+        // aspect ratio 16:9
+        padding-top: 56.25%;
     }
     &__main-data {
         margin-bottom: 20px;
         width: 100%;
         &_video {
             width: 100%;
-            height: 700px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
     }
 }

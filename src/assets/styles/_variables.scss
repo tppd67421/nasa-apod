@@ -2,9 +2,17 @@
 $light-color: #ffffff;
 $blue-color: #06255b;
 $transparent: transparent;
-$image-catalog-item-width: 300px;
-$image-catalog-item-height: 300px;
 $image-catalog-item-box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.8);
 
 // size
 $preloader-size: 230px;
+$margin-for-list-item: 20px;
+$image-catalog-item-width: 300px;
+$image-catalog-item-height: 300px;
+
+// screens
+$screen-mobile-tiny: 375px;
+$screen-tablet: 769px;
+$screen-laptop: 1025px;
+$screen-laptop-large: 1369px;
+$screen-desktop: 1920px;

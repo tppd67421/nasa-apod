@@ -20,9 +20,15 @@
         font-family: 'Playfair Display', serif;
         color: $light-color;
         text-align: center;
-        margin: 50px 0;
+        margin: 50px;
         font-size: 45px;
         letter-spacing: 2px;
+        @include laptop-large {
+            font-size: 35px;
+        }
+        @include tablet {
+            font-size: 30px;
+        }
     }
     &__input {
         font-family: 'Exo 2', sans-serif;
@@ -37,6 +43,9 @@
             background-size: auto 70%;
             background-repeat: no-repeat;
             background-position: center;
+        }
+        @include laptop-large {
+            font-size: 18px;
         }
     }
     .error-component {

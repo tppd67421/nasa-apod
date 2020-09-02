@@ -12,9 +12,7 @@ const MainImage = ({
     imageData,
     changeImage,
     todayData,
-    setTodayData,
-    itemsCounterForPreloader,
-    updateItemsCounterForPreloader
+    setTodayData
 }) => {
     const dataFromLocalStorage = JSON.parse(readFromLocalStorage(C.LOCAL_STORAGE_KEY))
 
@@ -22,9 +20,6 @@ const MainImage = ({
 
     useEffect(() => {
         ajaxQuery()
-// console.log(itemsCounterForPreloader)
-// updateItemsCounterForPreloader(itemsCounterForPreloader++)
-// console.log(itemsCounterForPreloader)
         input.current.addEventListener('change', setNewDate)
 
         return () => input.current.removeEventListener('change', setNewDate)
