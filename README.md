@@ -27,7 +27,7 @@ Deployed application – [tppd67421.github.io/nasa-apod/](https://tppd67421.gith
 * `/src/app/helpers` – functions, which don't render, but help calculate something values or help do another things;
 * `/src/app/components/App.js` – main component, which render all application.
 
-Scripts:
+## Scripts:
 
 `npm start` – start project in development mode;
 <br>

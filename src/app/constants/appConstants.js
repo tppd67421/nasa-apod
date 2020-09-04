@@ -1,6 +1,6 @@
 const appConstants = {
     NASA_QUERY: 'https://api.nasa.gov/planetary/apod',
-    NASA_API_KEY: 'gKbcjyL1faO8B1GgXaE8hFzUqelAUaBhk1ZjIxLQ',
+    NASA_API_KEY: '3zbRNQCuSrdOsHV2LsGKVGzEPuecszavgkAo7mYo',
     NASA_API_KEY_STRING: 'api_key',
     NASA_TARGET_DATE_STRING: 'date',
     NASA_START_DATE_STRING: 'start_date',
