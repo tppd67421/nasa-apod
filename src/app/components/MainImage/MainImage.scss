@@ -37,6 +37,9 @@
         font-size: 20px;
         padding: 2px 5px;
         margin-bottom: 70px;
+		&:focus {
+			border: 1.5px solid $light-color;
+		}
         &::-webkit-calendar-picker-indicator {
             cursor: pointer;
             background: url(~@/assets/images/calendar.svg);
