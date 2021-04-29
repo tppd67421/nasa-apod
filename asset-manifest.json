@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/build/static/css/main.9355a1a6.chunk.css",
-    "main.js": "/build/static/js/main.c81a7c00.chunk.js",
-    "main.js.map": "/build/static/js/main.c81a7c00.chunk.js.map",
-    "runtime-main.js": "/build/static/js/runtime-main.56a844eb.js",
-    "runtime-main.js.map": "/build/static/js/runtime-main.56a844eb.js.map",
-    "static/js/2.d3345fe1.chunk.js": "/build/static/js/2.d3345fe1.chunk.js",
-    "static/js/2.d3345fe1.chunk.js.map": "/build/static/js/2.d3345fe1.chunk.js.map",
-    "static/js/3.c633020d.chunk.js": "/build/static/js/3.c633020d.chunk.js",
-    "static/js/3.c633020d.chunk.js.map": "/build/static/js/3.c633020d.chunk.js.map",
-    "index.html": "/build/index.html",
-    "static/css/main.9355a1a6.chunk.css.map": "/build/static/css/main.9355a1a6.chunk.css.map",
-    "static/js/2.d3345fe1.chunk.js.LICENSE.txt": "/build/static/js/2.d3345fe1.chunk.js.LICENSE.txt",
-    "static/media/MainImage.scss": "/build/static/media/calendar.b31bafcf.svg",
-    "static/media/ImageCatalog.scss": "/build/static/media/video-icon.41de0619.svg"
+    "main.css": "/static/css/main.882b0f4f.chunk.css",
+    "main.js": "/static/js/main.c81a7c00.chunk.js",
+    "main.js.map": "/static/js/main.c81a7c00.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.494f28a4.js",
+    "runtime-main.js.map": "/static/js/runtime-main.494f28a4.js.map",
+    "static/js/2.d3345fe1.chunk.js": "/static/js/2.d3345fe1.chunk.js",
+    "static/js/2.d3345fe1.chunk.js.map": "/static/js/2.d3345fe1.chunk.js.map",
+    "static/js/3.c633020d.chunk.js": "/static/js/3.c633020d.chunk.js",
+    "static/js/3.c633020d.chunk.js.map": "/static/js/3.c633020d.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.882b0f4f.chunk.css.map": "/static/css/main.882b0f4f.chunk.css.map",
+    "static/js/2.d3345fe1.chunk.js.LICENSE.txt": "/static/js/2.d3345fe1.chunk.js.LICENSE.txt",
+    "static/media/MainImage.scss": "/static/media/calendar.b31bafcf.svg",
+    "static/media/ImageCatalog.scss": "/static/media/video-icon.41de0619.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.56a844eb.js",
+    "static/js/runtime-main.494f28a4.js",
     "static/js/2.d3345fe1.chunk.js",
-    "static/css/main.9355a1a6.chunk.css",
+    "static/css/main.882b0f4f.chunk.css",
     "static/js/main.c81a7c00.chunk.js"
   ]
 }
