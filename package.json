@@ -1,6 +1,7 @@
 {
   "name": "nasa-apod",
   "version": "0.1.0",
+  "homepage": "/nasa-apod",
   "private": true,
   "dependencies": {
     "@alexcambose/react-infinite-scroll": "^1.0.1",
@@ -27,7 +28,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
