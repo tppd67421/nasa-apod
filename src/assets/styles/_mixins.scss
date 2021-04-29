@@ -1,4 +1,4 @@
-@import '~@/assets/styles/variables';
+@import 'variables';
 
 // screens
 @mixin mobile-tiny() {
@@ -41,7 +41,7 @@
         height: 19px;
         top: 15px;
         left: 15px;
-        background-image: url(~@/assets/images/video-icon.svg);
+        background-image: url(../images/video-icon.svg);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
