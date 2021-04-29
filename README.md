@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# Project description
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Deployed application: [tppd67421.github.io/nasa-apod/](https://tppd67421.github.io/nasa-apod/)
 
-## Available Scripts
+## Technologies used:
 
-In the project directory, you can run:
+* `React/Redux`;
+* `Webpack`;
+* `SCSS`.
 
-### `yarn start`
+## Project description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project use NASA API and get Astronomy Picture of the Day ([link to api](https://api.nasa.gov/)). Page responsive for all screens.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+When entering the site you will see preloader. After loaded you will see image or video of the day on full screen. A little bit bottom you can will see title, input element with date, for select content of the target day. If you set another date, you will see new image on top page. Date will be set to local storage and after reload page you will see setted date with her image.
 
-### `yarn test`
+After this will be gallery with 24 elements (images or video). Each from them is picture (or video) of the day. First element of the yesterday. Second - the day before yesterday and etc. If you scroll to end will be work infinity loader and you will see next 24 elements. This process will be continue to infinity.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+If you click on any element, will be open modal window. In this modal window will be show element title, uncutted element (video or image), description and date. If you click to image in modal window, for you will be showed full size image in new tab.
 
-### `yarn build`
+Each night we have small time interval, when application don't working. You will see errow message. It happens because NASA will set new image of the day and in this time will give null respond to api.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Nice to use :)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Project structure:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* `/src/app/` – contain all js files;
+* `/src/assets` – contain another files (fonts, styles and etc);
+* `/src/app/components` – all components, which rendered on screen;
+* `/src/app/components/ApplicationError` – if we get error, which broke all application;
+* `/src/app/components/ErrorComponent` – if we get error single component;
+* `/src/app/components/ImageBlock` – image component;
+* `/src/app/components/ImageCatalog` – include ImageBlock, VideoBlock, Loaders and RenderingContentDependingOnTheType;
+* `/src/app/components/Loaders` – show LoaderActive if user scroll to end page, show LoaderEmpty with same size (fix bug with jumping elements);
+* `/src/app/components/MainImage` – big image on first screen with title and data;
+* `/src/app/components/ModalWindow` – we show ModalWindow with title, full size image (or iframe with video), image (or video) description and date;
+* `/src/app/components/Preloader` – show after loaded all content;
+* `/src/app/components/RenderingContentDependingOnTheType` – render ImageBlock, VideoBlock or ErrorComponent depending on the type;
+* `/src/app/components/VideoBlock` – get thumbnail from video and render image, inside ModalWindow we render iframe;
+* `/src/app/constants` – all constants;
+* `/src/app/helpers` – functions, which don't render, but help calculate something values or help do another things;
+* `/src/app/components/App.js` – main component, which render all application.
 
-### `yarn eject`
+## Scripts:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+`npm start` – start project in development mode;
+<br>
+`npm run build` – build production version.
