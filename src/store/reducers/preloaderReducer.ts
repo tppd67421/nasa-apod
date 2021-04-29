@@ -1,6 +1,12 @@
 import AC from '@/constants/actionsConstants'
+import { PreloaderTypes } from '@/types/actions'
+import { IPreloader } from '@/types/state'
 
-const preloaderReducer = (state = {}, action) => {
+const initialState: IPreloader = {
+    itemsCounterForPreloader: 0
+}
+
+const preloaderReducer = (state = initialState, action: PreloaderTypes): IPreloader => {
     switch (action.type) {
         case AC.UPDATE_ITEM_COUNTER_FOR_PRELOADER:
             return {

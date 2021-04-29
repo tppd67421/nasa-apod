@@ -1,6 +1,25 @@
 import AC from '@/constants/actionsConstants'
+import { MainImageTypes } from '@/types/actions'
+import { IMainImage } from '@/types/state'
 
-const mainImageReducer = (state = {}, action) => {
+const initialState: IMainImage = {
+    imageData: {
+        date: '',
+        url: '',
+        explanation: '',
+        title: '',
+        mediaType: ''
+    },
+    todayData: {
+        date: '',
+        url: '',
+        explanation: '',
+        title: '',
+        mediaType: ''
+    }
+}
+
+const mainImageReducer = (state = initialState, action: MainImageTypes): IMainImage => {
     switch (action.type) {
         case AC.SET_TODAY_DATA:
             return {

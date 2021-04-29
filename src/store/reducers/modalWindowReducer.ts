@@ -1,6 +1,17 @@
 import AC from '@/constants/actionsConstants'
+import { ModalWindowTypes } from '@/types/actions'
+import { IModalWindow } from '@/types/state'
 
-const modalWindowReducer = (state = {}, action) => {
+
+const initialState: IModalWindow = {
+    modalWindowState: false,
+    modalWindowTitle: null,
+    modalWindowMainData: null,
+    modalWindowDate: null,
+    modalWindowExplanation: null
+}
+
+const modalWindowReducer = (state = initialState, action: any): IModalWindow => {
     switch (action.type) {
         case AC.SET_STATE_FOR_MODAL_WINDOW:
             return {
