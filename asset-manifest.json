@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/nasa-apod/static/css/main.db864888.chunk.css",
-    "main.js": "/nasa-apod/static/js/main.c81a7c00.chunk.js",
-    "main.js.map": "/nasa-apod/static/js/main.c81a7c00.chunk.js.map",
+    "main.css": "/nasa-apod/static/css/main.d1e89598.chunk.css",
+    "main.js": "/nasa-apod/static/js/main.e49aedff.chunk.js",
+    "main.js.map": "/nasa-apod/static/js/main.e49aedff.chunk.js.map",
     "runtime-main.js": "/nasa-apod/static/js/runtime-main.503481c3.js",
     "runtime-main.js.map": "/nasa-apod/static/js/runtime-main.503481c3.js.map",
-    "static/js/2.d3345fe1.chunk.js": "/nasa-apod/static/js/2.d3345fe1.chunk.js",
-    "static/js/2.d3345fe1.chunk.js.map": "/nasa-apod/static/js/2.d3345fe1.chunk.js.map",
+    "static/js/2.b0ce1584.chunk.js": "/nasa-apod/static/js/2.b0ce1584.chunk.js",
+    "static/js/2.b0ce1584.chunk.js.map": "/nasa-apod/static/js/2.b0ce1584.chunk.js.map",
     "static/js/3.c633020d.chunk.js": "/nasa-apod/static/js/3.c633020d.chunk.js",
     "static/js/3.c633020d.chunk.js.map": "/nasa-apod/static/js/3.c633020d.chunk.js.map",
     "index.html": "/nasa-apod/index.html",
-    "static/css/main.db864888.chunk.css.map": "/nasa-apod/static/css/main.db864888.chunk.css.map",
-    "static/js/2.d3345fe1.chunk.js.LICENSE.txt": "/nasa-apod/static/js/2.d3345fe1.chunk.js.LICENSE.txt",
+    "static/css/main.d1e89598.chunk.css.map": "/nasa-apod/static/css/main.d1e89598.chunk.css.map",
+    "static/js/2.b0ce1584.chunk.js.LICENSE.txt": "/nasa-apod/static/js/2.b0ce1584.chunk.js.LICENSE.txt",
     "static/media/MainImage.scss": "/nasa-apod/static/media/calendar.b31bafcf.svg",
     "static/media/ImageCatalog.scss": "/nasa-apod/static/media/video-icon.41de0619.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.503481c3.js",
-    "static/js/2.d3345fe1.chunk.js",
-    "static/css/main.db864888.chunk.css",
-    "static/js/main.c81a7c00.chunk.js"
+    "static/js/2.b0ce1584.chunk.js",
+    "static/css/main.d1e89598.chunk.css",
+    "static/js/main.e49aedff.chunk.js"
   ]
 }
