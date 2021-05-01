@@ -1,8 +1,22 @@
-import AC from '@/constants/actionsConstants'
-import { ImageCatalogTypes } from '@/types/actions'
-import { IImageCatalog } from '@/types/state'
+import { createReducer } from 'redux-act'
+import { IImageCatalogState } from '@/types/state'
+import {
+    IChangeDataIntervalInImageCatalog,
+    ICountItemsForOneIteration,
+    ILoaderInImageCatalog,
+    ILoadImagesForOneIterationToImageCatalog,
+    ILoadImagesToImageCatalog
+} from '@/types/actions';
+import {
+    changeDataIntervalInImageCatalog,
+    countItemsForOneIteration,
+    loaderInImageCatalog,
+    loadImagesForOneIterationToImageCatalog,
+    loadImagesToImageCatalog
+} from '../actions/imageCatalogActions';
 
-const initialState: IImageCatalog = {
+
+const initialState: IImageCatalogState = {
     items: [],
     itemsForOneIteration: [],
     date: {
@@ -13,44 +27,51 @@ const initialState: IImageCatalog = {
     loader: true
 }
 
-const imageCatalogReducer = (state = initialState, action: any): IImageCatalog => {
-    switch (action.type) {
-        case AC.LOAD_IMAGES_TO_IMAGE_CATALOG:
-            return {
-                ...state,
-                items: action.items
-            }
+const imageCatalogReducer = createReducer<IImageCatalogState>({}, initialState)
 
-        case AC.LOAD_IMAGES_FOR_ONE_ITERATION_TO_IMAGE_CATALOG:
-            return {
-                ...state,
-                itemsForOneIteration: action.items
-            }
+const loadImagesToImageCatalogReducer = (
+    state: IImageCatalogState, action: ILoadImagesToImageCatalog
+) => ({
+    ...state,
+    items: action.items
+})
 
-        case AC.CHANGE_DATA_INTERVAL_IN_IMAGE_CATALOG:
-            return {
-                ...state,
-                date: {
-                    startDateValue: action.startDateValue,
-                    endDateValue: action.endDateValue
-                }
-            }
+const loadImagesForOneIterationToImageCatalogReducer = (
+    state: IImageCatalogState, action: ILoadImagesForOneIterationToImageCatalog
+) => ({
+    ...state,
+    itemsForOneIteration: action.items
+})
 
-        case AC.ITEMS_COUNTER_FOR_ONE_ITERATION:
-            return {
-                ...state,
-                itemsCounterForOneIteration: action.counter
-            }
-
-        case AC.LOADER_IN_IMAGE_CATALOG:
-            return {
-                ...state,
-                loader: action.loader
-            }
-
-        default:
-            return state
+const changeDataIntervalInImageCatalogReducer = (
+    state: IImageCatalogState, action: IChangeDataIntervalInImageCatalog
+) => ({
+    ...state,
+    date: {
+        startDateValue: action.startDateValue,
+        endDateValue: action.endDateValue
     }
-}
+})
+
+const countItemsForOneIterationReducer = (
+    state: IImageCatalogState, action: ICountItemsForOneIteration
+) => ({
+    ...state,
+    itemsCounterForOneIteration: action.counter
+})
+
+const loaderInImageCatalogReducer = (
+    state: IImageCatalogState, action: ILoaderInImageCatalog
+) => ({
+    ...state,
+    loader: action.loader
+})
+
+imageCatalogReducer.on(loadImagesToImageCatalog, loadImagesToImageCatalogReducer)
+imageCatalogReducer.on(loadImagesForOneIterationToImageCatalog, loadImagesForOneIterationToImageCatalogReducer)
+imageCatalogReducer.on(changeDataIntervalInImageCatalog, changeDataIntervalInImageCatalogReducer)
+imageCatalogReducer.on(countItemsForOneIteration, countItemsForOneIterationReducer)
+imageCatalogReducer.on(loaderInImageCatalog, loaderInImageCatalogReducer)
+
 
 export default imageCatalogReducer

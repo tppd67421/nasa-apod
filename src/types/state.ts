@@ -1,20 +1,20 @@
 import React from "react"
-import { IImageCatalogItem, IMainImageItem } from "./main";
+import { IImageCatalogItem, IMainImageItem } from "./imageItems";
 
 
 export interface IAppState {
-    mainImage: IMainImage
-    imageCatalog: IImageCatalog
-    modalWindow: IModalWindow
-    preloader: IPreloader
+    mainImage: IMainImageState
+    imageCatalog: IImageCatalogState
+    modalWindow: IModalWindowState
+    preloader: IPreloaderState
 }
 
-export interface IMainImage {
+export interface IMainImageState {
     imageData: IMainImageItem
     todayData: IMainImageItem
 }
 
-export interface IImageCatalog {
+export interface IImageCatalogState {
     items: IImageCatalogItem[]
     itemsForOneIteration: IImageCatalogItem[]
     date: {
@@ -25,7 +25,7 @@ export interface IImageCatalog {
     loader: boolean
 }
 
-export interface IModalWindow {
+export interface IModalWindowState {
     modalWindowState: boolean
     modalWindowTitle: string | null
     modalWindowMainData: React.ReactNode
@@ -33,6 +33,6 @@ export interface IModalWindow {
     modalWindowExplanation: string | null
 }
 
-export interface IPreloader {
+export interface IPreloaderState {
     itemsCounterForPreloader: number
 }

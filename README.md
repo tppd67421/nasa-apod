@@ -4,9 +4,9 @@ Deployed application: [tppd67421.github.io/nasa-apod/](https://tppd67421.github.
 
 ## Technologies used:
 
-* `React/Redux`;
-* `Webpack`;
-* `SCSS`.
+* React/Redux;
+* TypeScript;
+* SCSS.
 
 ## Project description
 

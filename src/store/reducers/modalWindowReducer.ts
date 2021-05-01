@@ -1,9 +1,22 @@
-import AC from '@/constants/actionsConstants'
-import { ModalWindowTypes } from '@/types/actions'
-import { IModalWindow } from '@/types/state'
+import { createReducer } from 'redux-act'
+import { IModalWindowState } from '@/types/state'
+import {
+    ISetDateForModalWindow,
+    ISetExplanationForModalWindow,
+    ISetMainDataForModalWindow,
+    ISetStateForModalWindow,
+    ISetTitleForModalWindow
+} from '@/types/actions'
+import {
+    setDateForModalWindow,
+    setExplanationForModalWindow,
+    setMainDataForModalWindow,
+    setStateForModalWindow,
+    setTitleForModalWindow
+} from '../actions/modalWindowActions'
 
 
-const initialState: IModalWindow = {
+const initialState: IModalWindowState = {
     modalWindowState: false,
     modalWindowTitle: null,
     modalWindowMainData: null,
@@ -11,41 +24,48 @@ const initialState: IModalWindow = {
     modalWindowExplanation: null
 }
 
-const modalWindowReducer = (state = initialState, action: any): IModalWindow => {
-    switch (action.type) {
-        case AC.SET_STATE_FOR_MODAL_WINDOW:
-            return {
-                ...state,
-                modalWindowState: action.state
-            }
+const modalWindowReducer = createReducer<IModalWindowState>({}, initialState)
 
-        case AC.SET_TITLE_FOR_MODAL_WINDOW:
-            return {
-                ...state,
-                modalWindowTitle: action.title
-            }
+const setStateForModalWindowReducer = (
+    state: IModalWindowState, action: ISetStateForModalWindow
+) => ({
+    ...state,
+    modalWindowState: action.state
+})
 
-        case AC.SET_MAIN_DATA_FOR_MODAL_WINDOW:
-            return {
-                ...state,
-                modalWindowMainData: action.mainData
-            }
+const setTitleForModalWindowReducer = (
+    state: IModalWindowState, action: ISetTitleForModalWindow
+) => ({
+    ...state,
+    modalWindowTitle: action.title
+})
 
-        case AC.SET_DATE_FOR_MODAL_WINDOW:
-            return {
-                ...state,
-                modalWindowDate: action.date
-            }
+const setMainDataForModalWindowReducer = (
+    state: IModalWindowState, action: ISetMainDataForModalWindow
+) => ({
+    ...state,
+    modalWindowMainData: action.mainData
+})
 
-        case AC.SET_EXPLANATION_FOR_MODAL_WINDOW:
-            return {
-                ...state,
-                modalWindowExplanation: action.explanation
-            }
+const setDateForModalWindowReducer = (
+    state: IModalWindowState, action: ISetDateForModalWindow
+) => ({
+    ...state,
+    modalWindowDate: action.date
+})
 
-        default:
-            return state
-    }
-}
+const setExplanationForModalWindowReducer = (
+    state: IModalWindowState, action: ISetExplanationForModalWindow
+) => ({
+    ...state,
+    modalWindowExplanation: action.explanation
+})
+
+modalWindowReducer.on(setStateForModalWindow, setStateForModalWindowReducer)
+modalWindowReducer.on(setTitleForModalWindow, setTitleForModalWindowReducer)
+modalWindowReducer.on(setMainDataForModalWindow, setMainDataForModalWindowReducer)
+modalWindowReducer.on(setDateForModalWindow, setDateForModalWindowReducer)
+modalWindowReducer.on(setExplanationForModalWindow, setExplanationForModalWindowReducer)
+
 
 export default modalWindowReducer

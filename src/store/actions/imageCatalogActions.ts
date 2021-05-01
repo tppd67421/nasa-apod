@@ -1,32 +1,47 @@
+import { createAction } from 'redux-act'
 import AC from '@/constants/actionsConstants'
-import { ImageCatalogTypes } from '@/types/actions'
-import { IImageCatalogItem } from '@/types/main'
+import {
+    ILoadImagesToImageCatalog,
+    ILoadImagesForOneIterationToImageCatalog,
+    IChangeDataIntervalInImageCatalog,
+    ICountItemsForOneIteration,
+    ILoaderInImageCatalog,
+} from '@/types/actions'
+import { IImageCatalogItem } from '@/types/imageItems'
 
-export const loadImagesToImageCatalog = (items: IImageCatalogItem[]): ImageCatalogTypes => ({
-    type: AC.LOAD_IMAGES_TO_IMAGE_CATALOG,
-    items
-})
 
-export const loadImagesForOneIterationToImageCatalog = (items: IImageCatalogItem[]): ImageCatalogTypes => ({
-    type: AC.LOAD_IMAGES_FOR_ONE_ITERATION_TO_IMAGE_CATALOG,
-    items
-})
+export const loadImagesToImageCatalog = createAction<ILoadImagesToImageCatalog>(
+    AC.LOAD_IMAGES_TO_IMAGE_CATALOG,
+    (items: IImageCatalogItem[]) => ({
+        items
+    })
+)
 
-export const changeDataIntervalInImageCatalog = (
-    startDateValue: string | null,
-    endDateValue: string | null): ImageCatalogTypes =>
-({
-    type: AC.CHANGE_DATA_INTERVAL_IN_IMAGE_CATALOG,
-    startDateValue,
-    endDateValue
-})
+export const loadImagesForOneIterationToImageCatalog = createAction<ILoadImagesForOneIterationToImageCatalog>(
+    AC.LOAD_IMAGES_FOR_ONE_ITERATION_TO_IMAGE_CATALOG,
+    (items: IImageCatalogItem[]) => ({
+        items
+    })
+)
 
-export const countItemsForOneIteration = (counter: number): ImageCatalogTypes => ({
-    type: AC.ITEMS_COUNTER_FOR_ONE_ITERATION,
-    counter
-})
+export const changeDataIntervalInImageCatalog = createAction<IChangeDataIntervalInImageCatalog>(
+    AC.CHANGE_DATA_INTERVAL_IN_IMAGE_CATALOG,
+    (startDateValue: string | null, endDateValue: string | null) => ({
+        startDateValue,
+        endDateValue
+    })
+)
 
-export const loaderInImageCatalog = (loader: boolean): ImageCatalogTypes => ({
-    type: AC.LOADER_IN_IMAGE_CATALOG,
-    loader
-})
+export const countItemsForOneIteration = createAction<ICountItemsForOneIteration>(
+    AC.ITEMS_COUNTER_FOR_ONE_ITERATION,
+    (counter: number) => ({
+        counter
+    })
+)
+
+export const loaderInImageCatalog = createAction<ILoaderInImageCatalog>(
+    AC.LOADER_IN_IMAGE_CATALOG,
+    (loader: boolean) => ({
+        loader
+    })
+)

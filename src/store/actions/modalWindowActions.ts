@@ -1,28 +1,46 @@
-import AC from '@/constants/actionsConstants'
-import { ModalWindowTypes } from '@/types/actions'
 import React from 'react'
+import { createAction } from 'redux-act'
+import AC from '@/constants/actionsConstants'
+import {
+    ISetStateForModalWindow,
+    ISetTitleForModalWindow,
+    ISetMainDataForModalWindow,
+    ISetDateForModalWindow,
+    ISetExplanationForModalWindow,
+} from '@/types/actions'
 
-export const setStateForModalWindow = (state: boolean): ModalWindowTypes => ({
-    type: AC.SET_STATE_FOR_MODAL_WINDOW,
-    state
-})
 
-export const setTitleForModalWindow = (title: string | null): ModalWindowTypes => ({
-    type: AC.SET_TITLE_FOR_MODAL_WINDOW,
-    title
-})
+export const setStateForModalWindow = createAction<ISetStateForModalWindow>(
+    AC.SET_STATE_FOR_MODAL_WINDOW,
+    (state: boolean) => ({
+        state
+    })
+)
 
-export const setMainDataForModalWindow = (mainData: React.ReactNode): ModalWindowTypes => ({
-    type: AC.SET_MAIN_DATA_FOR_MODAL_WINDOW,
-    mainData
-})
+export const setTitleForModalWindow = createAction<ISetTitleForModalWindow>(
+    AC.SET_TITLE_FOR_MODAL_WINDOW,
+    (title: string | null) => ({
+        title
+    })
+)
 
-export const setDateForModalWindow = (date: string | null): ModalWindowTypes => ({
-    type: AC.SET_DATE_FOR_MODAL_WINDOW,
-    date
-})
+export const setMainDataForModalWindow = createAction<ISetMainDataForModalWindow>(
+    AC.SET_MAIN_DATA_FOR_MODAL_WINDOW,
+    (mainData: React.ReactNode) => ({
+        mainData
+    })
+)
 
-export const setExplanationForModalWindow = (explanation: string | null): ModalWindowTypes => ({
-    type: AC.SET_EXPLANATION_FOR_MODAL_WINDOW,
-    explanation
-})
+export const setDateForModalWindow = createAction<ISetDateForModalWindow>(
+    AC.SET_DATE_FOR_MODAL_WINDOW,
+    (date: string | null) => ({
+        date
+    })
+)
+
+export const setExplanationForModalWindow = createAction<ISetExplanationForModalWindow>(
+    AC.SET_EXPLANATION_FOR_MODAL_WINDOW,
+    (explanation: string | null) => ({
+        explanation
+    })
+)

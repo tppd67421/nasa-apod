@@ -9748,6 +9748,11 @@ redent@^3.0.0:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
 
+redux-act@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/redux-act/-/redux-act-1.8.0.tgz#5394a9433b36937d1a1da11aca6547d97d10ab00"
+  integrity sha512-xW3FIco/VwJGMW3eCD3JGAxyozNC4k35qrWM5lEQf9T2pfv3leDC+3vQ8WdHZjcrol/jjWAeJ+ULqrscuDqlKg==
+
 redux@^4.0.0, redux@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.1.0.tgz#eb049679f2f523c379f1aff345c8612f294c88d4"
