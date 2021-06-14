@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/nasa-apod/static/css/main.d1e89598.chunk.css",
-    "main.js": "/nasa-apod/static/js/main.e49aedff.chunk.js",
-    "main.js.map": "/nasa-apod/static/js/main.e49aedff.chunk.js.map",
-    "runtime-main.js": "/nasa-apod/static/js/runtime-main.503481c3.js",
-    "runtime-main.js.map": "/nasa-apod/static/js/runtime-main.503481c3.js.map",
-    "static/js/2.b0ce1584.chunk.js": "/nasa-apod/static/js/2.b0ce1584.chunk.js",
-    "static/js/2.b0ce1584.chunk.js.map": "/nasa-apod/static/js/2.b0ce1584.chunk.js.map",
-    "static/js/3.c633020d.chunk.js": "/nasa-apod/static/js/3.c633020d.chunk.js",
-    "static/js/3.c633020d.chunk.js.map": "/nasa-apod/static/js/3.c633020d.chunk.js.map",
-    "index.html": "/nasa-apod/index.html",
-    "static/css/main.d1e89598.chunk.css.map": "/nasa-apod/static/css/main.d1e89598.chunk.css.map",
-    "static/js/2.b0ce1584.chunk.js.LICENSE.txt": "/nasa-apod/static/js/2.b0ce1584.chunk.js.LICENSE.txt",
-    "static/media/MainImage.scss": "/nasa-apod/static/media/calendar.b31bafcf.svg",
-    "static/media/ImageCatalog.scss": "/nasa-apod/static/media/video-icon.41de0619.svg"
+    "main.css": "/static/css/main.46924efc.chunk.css",
+    "main.js": "/static/js/main.0f14c918.chunk.js",
+    "main.js.map": "/static/js/main.0f14c918.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f436d854.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f436d854.js.map",
+    "static/js/2.58da24bd.chunk.js": "/static/js/2.58da24bd.chunk.js",
+    "static/js/2.58da24bd.chunk.js.map": "/static/js/2.58da24bd.chunk.js.map",
+    "static/js/3.1fd92e23.chunk.js": "/static/js/3.1fd92e23.chunk.js",
+    "static/js/3.1fd92e23.chunk.js.map": "/static/js/3.1fd92e23.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.46924efc.chunk.css.map": "/static/css/main.46924efc.chunk.css.map",
+    "static/js/2.58da24bd.chunk.js.LICENSE.txt": "/static/js/2.58da24bd.chunk.js.LICENSE.txt",
+    "static/media/MainImage.scss": "/static/media/calendar.b31bafcf.svg",
+    "static/media/ImageCatalog.scss": "/static/media/video-icon.41de0619.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.503481c3.js",
-    "static/js/2.b0ce1584.chunk.js",
-    "static/css/main.d1e89598.chunk.css",
-    "static/js/main.e49aedff.chunk.js"
+    "static/js/runtime-main.f436d854.js",
+    "static/js/2.58da24bd.chunk.js",
+    "static/css/main.46924efc.chunk.css",
+    "static/js/main.0f14c918.chunk.js"
   ]
 }
