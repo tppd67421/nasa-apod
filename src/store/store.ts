@@ -1,9 +1,16 @@
-import { createStore } from 'redux'
-import reducer from './reducers/index'
+import { configureStore } from '@reduxjs/toolkit'
+import imageCatalogReducer from './slices/imageCatalogSlice'
+import mainImageSlice from './slices/mainImageSlice'
+import modalWindowReducer from './slices/modalWindowSlice'
+import preloaderReducer from './slices/preloaderSlice'
 
-const store = createStore(
-    reducer,
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-)
+const store = configureStore({
+  reducer: {
+    mainImage: mainImageSlice,
+    imageCatalog: imageCatalogReducer,
+    modalWindow: modalWindowReducer,
+    preloader: preloaderReducer,
+  },
+})
 
 export default store
