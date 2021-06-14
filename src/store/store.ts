@@ -11,6 +11,7 @@ const store = configureStore({
     modalWindow: modalWindowReducer,
     preloader: preloaderReducer,
   },
+  devTools: process.env.NODE_ENV !== 'production',
 })
 
 export default store
