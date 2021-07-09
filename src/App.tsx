@@ -21,18 +21,18 @@ const App = () => {
     itemsCounterForPreloader === 10 && window.scroll(0, 0)
   }, [itemsCounterForPreloader])
 
-  itemsCounterForPreloader < C.ITEMS_ON_PAGE_WITH_FIRST_ITERATION
-    ? (document.body.style.overflow = 'hidden')
-    : document.body.removeAttribute('style')
+  // itemsCounterForPreloader < C.ITEMS_ON_PAGE_WITH_FIRST_ITERATION
+  //   ? (document.body.style.overflow = 'hidden')
+  //   : document.body.removeAttribute('style')
 
   return (
     <>
-      <Preloader
+      {/* <Preloader
         className={itemsCounterForPreloader < C.ITEMS_ON_PAGE_WITH_FIRST_ITERATION ? '' : 'hide'}
-      />
+      /> */}
       <MainImageContainer />
-      <ImageCatalogContainer />
-      <ModalWindowContainer />
+      {/* <ImageCatalogContainer />
+      <ModalWindowContainer /> */}
     </>
   )
 }
