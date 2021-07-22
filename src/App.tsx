@@ -1,16 +1,14 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { observer } from 'mobx-react'
+import preloaderStore from '@/store/PreloaderStore'
 import MainImageContainer from './components/MainImage/MainImageContainer'
 import ImageCatalogContainer from './components/ImageCatalog/ImageCatalogContainer'
 import ModalWindowContainer from './components/ModalWindow/ModalWindowContainer'
 import Preloader from './components/Preloader/Preloader'
 import C from '@/constants/appConstants'
-import { IAppState } from './store/types/state'
 
 const App = () => {
-  const itemsCounterForPreloader: number = useSelector(
-    (state: IAppState) => state.preloader.itemsCounterForPreloader
-  )
+  const itemsCounterForPreloader: number = preloaderStore.itemsCounterForPreloader
 
   // if user reload page (like f5) he may not be at the top of the page
   useEffect(() => {
@@ -31,10 +29,10 @@ const App = () => {
         className={itemsCounterForPreloader < C.ITEMS_ON_PAGE_WITH_FIRST_ITERATION ? '' : 'hide'}
       /> */}
       <MainImageContainer />
-      {/* <ImageCatalogContainer />
-      <ModalWindowContainer /> */}
+      <ImageCatalogContainer />
+      <ModalWindowContainer />
     </>
   )
 }
 
-export default App
+export default observer(App)

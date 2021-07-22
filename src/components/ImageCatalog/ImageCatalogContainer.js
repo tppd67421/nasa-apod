@@ -1,42 +1,22 @@
-import { connect } from 'react-redux'
-import {
-  loadImagesToImageCatalog,
-  loadImagesForOneIterationToImageCatalog,
-  changeDateIntervalInImageCatalog,
-  countItemsForOneIteration,
-  loaderInImageCatalog,
-} from '@/store/slices/imageCatalogSlice'
+import { observer } from 'mobx-react-lite'
+import mainImageStore from '@/store/MainImageStore'
+import imageCatalogStore from '@/store/ImageCatalogStore'
 import ImageCatalog from './ImageCatalog'
 
-const ImageCatalogContainer = (props) => {
-  return <ImageCatalog {...props} />
-}
+const ImageCatalogContainer = () => (
+  <ImageCatalog
+    imagesArray={imageCatalogStore.items}
+    imagesArrayForOneIteration={imageCatalogStore.itemsForOneIteration}
+    dateInterval={imageCatalogStore.date}
+    itemsCounterForOneIteration={imageCatalogStore.itemsCounterForOneIteration}
+    loader={imageCatalogStore.loader}
+    todayDate={mainImageStore.todayData.date}
+    loadImages={imageCatalogStore.loadImagesToImageCatalog}
+    loadImagesToOneIteration={imageCatalogStore.loadImagesForOneIterationToImageCatalog}
+    changeDateInterval={imageCatalogStore.changeDateIntervalInImageCatalog}
+    countItemsForOneIteration={imageCatalogStore.countItemsForOneIteration}
+    changeLoader={imageCatalogStore.loaderInImageCatalog}
+  />
+)
 
-const mapStateToProps = (state) => ({
-  imagesArray: state.imageCatalog.items,
-  imagesArrayForOneIteration: state.imageCatalog.itemsForOneIteration,
-  dateInterval: state.imageCatalog.date,
-  itemsCounterForOneIteration: state.imageCatalog.itemsCounterForOneIteration,
-  loader: state.imageCatalog.loader,
-  todayDate: state.mainImage.todayData.date,
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  loadImages(items) {
-    dispatch(loadImagesToImageCatalog(items))
-  },
-  loadImagesToOneIteration(items) {
-    dispatch(loadImagesForOneIterationToImageCatalog(items))
-  },
-  changeDateInterval(startDateValue, endDateValue) {
-    dispatch(changeDateIntervalInImageCatalog({ startDateValue, endDateValue }))
-  },
-  countItemsForOneIteration(items) {
-    dispatch(countItemsForOneIteration(items))
-  },
-  changeLoader(loaderShow) {
-    dispatch(loaderInImageCatalog(loaderShow))
-  },
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ImageCatalogContainer)
+export default observer(ImageCatalogContainer)

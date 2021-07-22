@@ -1,24 +1,19 @@
-import { connect } from 'react-redux'
-import { setStateForModalWindow } from '@/store/slices/modalWindowSlice'
+import { observer } from 'mobx-react-lite'
+import modalWindowStore from '@/store/ModalWindowStore'
 import ModalWindow from './ModalWindow'
 
-const ModalWindowContainer = (props) => {
-  return <ModalWindow {...props} />
+const ModalWindowContainer = () => {
+  return (
+    <ModalWindow
+      modalWindowShowed={modalWindowStore.modalWindowState}
+      modalWindowTitle={modalWindowStore.modalWindowTitle}
+      modalWindowMainData={modalWindowStore.modalWindowMainData}
+      modalWindowDate={modalWindowStore.modalWindowDate}
+      modalWindowExplanation={modalWindowStore.modalWindowExplanation}
+      modalWindowType={modalWindowStore.modalWindowType}
+      setStateForModalWindow={modalWindowStore.setStateForModalWindow}
+    />
+  )
 }
 
-const mapStateToProps = (state) => ({
-  modalWindowShowed: state.modalWindow.modalWindowState,
-  modalWindowTitle: state.modalWindow.modalWindowTitle,
-  modalWindowMainData: state.modalWindow.modalWindowMainData,
-  modalWindowDate: state.modalWindow.modalWindowDate,
-  modalWindowExplanation: state.modalWindow.modalWindowExplanation,
-  modalWindowType: state.modalWindow.modalWindowType,
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  setStateForModalWindow(state) {
-    dispatch(setStateForModalWindow(state))
-  },
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ModalWindowContainer)
+export default observer(ModalWindowContainer)

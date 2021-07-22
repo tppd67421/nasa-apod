@@ -1,5 +1,5 @@
 import C from '@/constants/appConstants'
-import { IImageCatalogItem, IMainImageItem } from './imageItems'
+import { ImageCatalogItem, MainImageItem } from './imageItems'
 
 export interface IAppState {
   mainImage: IMainImageState
@@ -9,13 +9,13 @@ export interface IAppState {
 }
 
 export interface IMainImageState {
-  imageData: IMainImageItem
-  todayData: IMainImageItem
+  imageData: MainImageItem
+  todayData: MainImageItem
 }
 
 export interface IImageCatalogState {
-  items: IImageCatalogItem[]
-  itemsForOneIteration: IImageCatalogItem[]
+  items: ImageCatalogItem[]
+  itemsForOneIteration: ImageCatalogItem[]
   date: {
     startDateValue: string | null
     endDateValue: string | null

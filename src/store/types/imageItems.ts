@@ -1,13 +1,13 @@
-export interface IMainImageItem {
-    date: string
-    url: string
-    explanation: string
-    title: string
-    mediaType: string
+export type MainImageItem = {
+  date: string
+  url: string
+  explanation: string
+  title: string
+  mediaType: string
 }
 
-export interface IImageCatalogItem extends IMainImageItem {
-    copyright?: string
-    hdurl: string
-    service_version: string
+export type ImageCatalogItem = MainImageItem & {
+  copyright?: string
+  hdurl: string
+  service_version: string
 }

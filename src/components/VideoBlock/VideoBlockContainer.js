@@ -1,53 +1,25 @@
-import { connect } from 'react-redux'
-import {
-  setStateForModalWindow,
-  setTitleForModalWindow,
-  setMainDataForModalWindow,
-  setDateForModalWindow,
-  setExplanationForModalWindow,
-  setTypeForModalWindow,
-} from '@/store/slices/modalWindowSlice'
-import { updateItemsCounterForPreloader } from '@/store/slices/preloaderSlice'
+import { observer } from 'mobx-react-lite'
+import modalWindowStore from '@/store/ModalWindowStore'
+import mainImageStore from '@/store/MainImageStore'
+import imageCatalogStore from '@/store/ImageCatalogStore'
+import preloaderStore from '@/store/PreloaderStore'
 import VideoBlock from './VideoBlock'
 
-const VideoBlockContainer = (props) => {
-  return <VideoBlock {...props} />
-}
+const VideoBlockContainer = () => (
+  <VideoBlock
+    modalWindowShowed={modalWindowStore.modalWindowState}
+    mainImage={mainImageStore.imageData}
+    todayImage={mainImageStore.todayData}
+    itemsFromImageCatalog={imageCatalogStore.items}
+    itemsCounterForPreloader={preloaderStore.itemsCounterForPreloader}
+    setStateForModalWindow={modalWindowStore.setStateForModalWindow}
+    setTitleForModalWindow={modalWindowStore.setTitleForModalWindow}
+    setMainDataForModalWindow={modalWindowStore.setMainDataForModalWindow}
+    setDateForModalWindow={modalWindowStore.setDateForModalWindow}
+    setExplanationForModalWindow={modalWindowStore.setExplanationForModalWindow}
+    setTypeForModalWindow={modalWindowStore.setTypeForModalWindow}
+    updateItemsCounterForPreloader={preloaderStore.updateItemsCounterForPreloader}
+  />
+)
 
-const mapStateToProps = (state) => ({
-  modalWindowShowed: state.modalWindow.modalWindowState,
-  mainImage: state.mainImage.imageData,
-  todayImage: state.mainImage.todayData,
-  itemsFromImageCatalog: state.imageCatalog.items,
-  itemsCounterForPreloader: state.preloader.itemsCounterForPreloader,
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  setStateForModalWindow(state) {
-    dispatch(setStateForModalWindow(state))
-  },
-
-  setTitleForModalWindow(title) {
-    dispatch(setTitleForModalWindow(title))
-  },
-
-  setMainDataForModalWindow(mainData) {
-    dispatch(setMainDataForModalWindow(mainData))
-  },
-
-  setDateForModalWindow(date) {
-    dispatch(setDateForModalWindow(date))
-  },
-
-  setExplanationForModalWindow(explanation) {
-    dispatch(setExplanationForModalWindow(explanation))
-  },
-  setTypeForModalWindow(type) {
-    dispatch(setTypeForModalWindow(type))
-  },
-  updateItemsCounterForPreloader(data) {
-    dispatch(updateItemsCounterForPreloader(data))
-  },
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(VideoBlockContainer)
+export default observer(VideoBlockContainer)

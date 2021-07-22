@@ -1,6 +1,5 @@
 import { makeAutoObservable } from 'mobx'
-import { ISetMainImage, ISetTodayData } from './types/actions'
-import { IMainImageItem } from './types/imageItems'
+import { MainImageType, TodayData } from './types/actions'
 
 class MainImage {
   imageData = {
@@ -22,8 +21,8 @@ class MainImage {
     makeAutoObservable(this)
   }
 
-  setTodayData = (action: any) => {
-    this.todayData = {
+  setMainImage = (action: MainImageType) => {
+    this.imageData = {
       date: action.date,
       url: action.url,
       explanation: action.explanation,
@@ -32,8 +31,8 @@ class MainImage {
     }
   }
 
-  setMainImage = (action: any) => {
-    this.imageData = {
+  setTodayData = (action: TodayData) => {
+    this.todayData = {
       date: action.date,
       url: action.url,
       explanation: action.explanation,
